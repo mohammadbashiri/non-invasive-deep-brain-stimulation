@@ -1,4 +1,4 @@
-function V_=VCN_I(I_input_,  g_Na,g_HT,g_LT,g_A,g_h,g_lk,V_0, f_s)
+function V_ = VCN_I(I_input_,  g_Na,g_HT,g_LT,g_A,g_h,g_lk,V_0, f_s)
 % NEW: There is also VCN_I_c.c, hopefully COMPATIBLE!!!
 
 % SBR call from Type_Ic_Fig2.m  !!! calculate time response of VCN cell for current injection
@@ -26,17 +26,18 @@ function V_=VCN_I(I_input_,  g_Na,g_HT,g_LT,g_A,g_h,g_lk,V_0, f_s)
 
 
 %%// SI-VALUES in s and V !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-C_M =12e-12;           %// 12pF Membrane capacitance
+C_M  = 12e-12;           %// 12pF Membrane capacitance
 
-V_K  =-70e-3;          %// -70mV K reversal potential
-V_Na =+55e-3;           %// 55mV Na reversal potential
-V_h  =-43e-3;           %// -43mV Na reversal potential
-V_lk =-65e-3;           %// -65mV Na reversal potential
+V_K  = -70e-3;           %// -70mV K reversal potential
+V_Na = +55e-3;           %// 55mV Na reversal potential
+V_h  = -43e-3;           %// -43mV Na reversal potential
+V_lk = -65e-3;           %// -65mV Na reversal potential
 
 %/*----------------------------neuron_init-------------------------------*/
-DT=1/f_s;     %// in s !!!!!!!!!!!!!!!!!!!!!!
+DT = 1/f_s;     %// in s !!!!!!!!!!!!!!!!!!!!!!
 
 V=V_0;
+
   a_inf=(1+exp(-(V+31e-3)/6e-3))^-0.25;
   b_inf=(1+exp( (V+66e-3)/7e-3))^-0.5;  % BUG bis 5.11.2003
 
