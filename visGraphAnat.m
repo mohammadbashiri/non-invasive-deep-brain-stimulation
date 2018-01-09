@@ -191,24 +191,23 @@ scatter(eFieldComb_amp(2, z==0 & x==line), y(z==0 & x==line), 'filled');
 xlabel('Electric Field (N/C)'); ylabel('Y'); grid;
 set(gca,'XAxisLocation','bottom','xdir','reverse','YAxisLocation','right');
 
-% filenameX = 'XeField2.mat';
-% filenameY = 'YeField2.mat';
-% saveDataX = unique(eFieldComb_amp(2, z==0 & y==line));
-% saveDataY = unique(eFieldComb_amp(2, z==0 & x==line));
-% save(filenameX, 'saveDataX');
-% save(filenameY, 'saveDataY');
+%% saving stuff
 
-%% integration -> to get the potential
-% dt = 0.01;
-% a = sin(0:dt:2*pi);
-% b = diff(a)./dt;
+% % data from the horizontal line
+% dataAM_H = unique(eFieldAM_amp(z==0 & y==line));      filenameAM = 'AM_H.mat';
+% dataL_H  = unique(eFieldComb_amp(1, z==0 & y==line)); filenameL  = 'L_H.mat';
+% dataR_H  = unique(eFieldComb_amp(2, z==0 & y==line)); filenameR  = 'R_H.mat';
+% save(filenameAM, 'dataAM_H');
+% save(filenameL, 'dataL_H');
+% save(filenameR, 'dataR_H');
 % 
-% figure; hold on;
-% plot(a); plot(b);
-% 
-% unique(eFieldAM_amp(z==0 & y==line));
-
-% toc
+% % data from the vertical line
+% dataAM_V = unique(eFieldAM_amp(z==0 & x==line));      filenameAM = 'AM_V.mat';
+% dataL_V  = unique(eFieldComb_amp(1, z==0 & x==line)); filenameL  = 'L_V.mat';
+% dataR_V  = unique(eFieldComb_amp(2, z==0 & x==line)); filenameR  = 'R_V.mat';
+% save(filenameAM, 'dataAM_V');
+% save(filenameL, 'dataL_V');
+% save(filenameR, 'dataR_V');
 
 end
 

@@ -1,23 +1,15 @@
-close all; clear all;
+function [ ] = MHH( I_stim1, freq1, I_stim2, freq2, I_stim3, freq3, tend, dt )
+%MHH Summary of this function goes here
+%   Detailed explanation goes here
 
-% initializing simulation param
-tend = 300;
-fs   = 100;
-dt   = 1/fs;
+% initialization
+fs   = 1/dt;
 t    = 0:dt:tend-dt;
 N    = numel(t); 
 
 % initialize stimulaiton current
-I_stim1 = 13;     % nA 
-freq1   = 1.0;    % 0.01 => 10 Hz
 I1      = I_stim1 * sin(2*pi*freq1*t);
-
-I_stim2 = 13;   % nA 
-freq2   = 1.01;    % 0.01 => 10 Hz
 I2      = I_stim2 * sin(2*pi*freq2*t);
-
-I_stim3 = 13;   % nA 
-freq3   = 1.02;    % 0.01 => 10 Hz
 I3      = I_stim3 * sin(2*pi*freq3*t);
 
 I = I1 + I2 + I3;
@@ -88,7 +80,7 @@ for i=1:N-1
     u(i+1) = u(i)+ dt*dudt;
 end
 
-figure(1);
+figure;
 subplot(5,1,[1, 2]); plot(t, I); ylim([min(I)-10,max(I)+10]); grid; ylim([-100 100]);
 legend('Current Density', 'Location', 'northwest');
 ylabel({'$I(\mu A/cm^2)$'},'Interpreter','latex');
@@ -102,6 +94,8 @@ suptitle({'Hodgkin Huxley Model', '(Mammalian Neuron)'});
 
 %% Function
 
+end
+
 function expout = expe(x)
 
     if ( x == 0)
@@ -111,3 +105,4 @@ function expout = expe(x)
     end
     
 end
+
