@@ -67,7 +67,7 @@ grid; axis tight
 % now we can simply pick two arbitrary points near the electrode and see if
 % we see action potential
 
-index = 500;
+index = 400;
 dataL_point  = dataL_H(index);
 dataR_point  = dataR_H(index);
 dataAM_point = dataAM_H(index);
