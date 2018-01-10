@@ -97,3 +97,21 @@ I_stim3 = 0;   % nA
 freq3   = 1.02;    % 0.01 => 10 Hz
 
 MHH( I_stim1, freq1, I_stim2, freq2, I_stim3, freq3, tend, dt );
+
+%% VCN model
+
+% initializing simulation param
+tend = 500e-3;
+fs   = 30e3;
+
+% initialize stimulaiton current
+I_stim1 = .1;    % nA 
+freq1   = 10;    % Hz
+
+I_stim2 = 0;     % nA 
+freq2   = 1.01;  % Hz
+
+I_stim3 = 0;     % nA 
+freq3   = 1.02;  % Hz
+
+VCN( I_stim1, freq1, I_stim2, freq2, I_stim3, freq3, tend, fs, 'I-II' );

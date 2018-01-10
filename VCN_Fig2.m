@@ -5,16 +5,15 @@
 %//------- modified ©2001 Werner Hemmert, Infineon Corporate Research ----------
 %//-----------------------------------------------------------------------------
 %// 30.10.2003 CN NEURON with ion channels according to Rothman & Manis 2003
-%//            Uses imputs from multiple ANFs (but from one section only) which are summed in input_ap (values with 2 APs are possible and linearly integrated)
+%// Uses imputs from multiple ANFs (but from one section only) which are summed 
+%// in input_ap (values with 2 APs are possible and linearly integrated)
 %//-----------------------------------------------------------------------------
 %//--------------------------------------------- basic definitions -------------
 %//-----------------------------------------------------------------------------*/
 %%                          % ALWAYS start with clean workspace
 close all;
 clear all;
-clear VCN_I;
-%clear VCN_I_c       % this is the C-version of VCN_I; faster but compatible
-%mex VCN_I_c.c
+
 %%  Define figure size such that you can read the labels in a report/paper
 figure;
 set(gcf, 'Units', 'Centimeters', 'PaperPositionMode', 'auto')
@@ -32,7 +31,6 @@ Tonset = 10e-3;      % s delay onset
 I_E(1:T*f_s) = 0;
 I_E(Tonset*f_s:(Ton+Tonset)*f_s) = 1;
 t = (1:size(I_E,2))/f_s;
-
 
 %//------------- Type I-c cell -----------------------------------------------*/
 g_Na = 1000e-9;          %// 1000nS
@@ -117,8 +115,8 @@ V1 = VCN_I(-100e-12*I_E,  g_Na,g_HT,g_LT,g_A,g_h,g_lk,V_0, f_s);
 V2 = VCN_I(+100e-12*I_E,  g_Na,g_HT,g_LT,g_A,g_h,g_lk,V_0, f_s);
 V3 = VCN_I(-150e-12*I_E,  g_Na,g_HT,g_LT,g_A,g_h,g_lk,V_0, f_s);
 V4 = VCN_I(+150e-12*I_E,  g_Na,g_HT,g_LT,g_A,g_h,g_lk,V_0, f_s);
-
-subplot(2,2,4)
+figure; plot(I_E);
+figure; %subplot(2,2,4)
 plot(t*1000, V1*1000,...  
      t*1000, V2*1000,...
      t*1000, V3*1000,...
