@@ -1,11 +1,15 @@
-function [ ] = MHH( I_stim1, freq1, I_stim2, freq2, I_stim3, freq3, tend, dt )
+function [ ] = MHH( I_stim1, freq1, I_stim2, freq2, I_stim3, freq3, tend, dt, slope )
 %MHH Summary of this function goes here
 %   Detailed explanation goes here
+
+% time is in millisecond
+% frequency is in kHz
 
 % initialization
 fs   = 1/dt;
 t    = 0:dt:tend-dt;
-N    = numel(t); 
+N    = numel(t);
+T_on = 50;
 
 % initialize stimulaiton current
 I1      = I_stim1 * sin(2*pi*freq1*t);
@@ -15,7 +19,17 @@ I3      = I_stim3 * sin(2*pi*freq3*t);
 I = I1 + I2 + I3;
 % I = ones(1,N)*1.2;
 
-I(1:50*fs) = 0; % No stimulation first 50 miliseconds to zero
+I(1:T_on*fs) = 0; % No stimulation first 50 miliseconds to zero
+
+% compute the ramp
+ramp = ones(1,N);
+ramp(1:T_on*fs) = 0;
+ramp_val = 0:slope:1;
+ramp(T_on*fs+1:T_on*fs+numel(ramp_val)) = ramp_val;
+figure; plot(t, ramp);
+
+% size(ramp)
+I = I .* ramp; 
 
 % initializing cell params
 % variable = value xxx Unit

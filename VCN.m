@@ -1,5 +1,5 @@
 function [ ] = VCN( I_stim1, freq1, I_stim2, freq2, I_stim3, freq3,...
-                    T, f_s, type )
+                    T, f_s, slope, type )
 %VCN_SPIKE Summary of this function goes here
 %   Detailed explanation goes here
 
@@ -62,11 +62,21 @@ I3      = I_stim3 * sin(2*pi*freq3*t);
 I = I1 + I2 + I3;
 I(1:Tonset*f_s) = 0; % No stimulation first 50 miliseconds to zero
 
+% compute the ramp
+ramp               = ones(1,numel(I));
+ramp(1:Tonset*f_s) = 0;
+ramp_val           = 0:slope:1;
+ramp(Tonset*f_s+1:Tonset*f_s+numel(ramp_val)) = ramp_val;
+figure; plot(t*1000, ramp);
+
+% size(ramp)
+I = I .* ramp;
+
 V4 = VCN_I(1e-9*I,  g_Na,g_HT,g_LT,g_A,g_h,g_lk,V_0, f_s);
 
 figure;
-subplot(5,1,[1, 2]); plot(t, I); ylim([min(I)-.01,max(I)+.01]); grid; % ylim([-100 100]);
-legend('Current Density', 'Location', 'northwest');
+subplot(5,1,[1, 2]); plot(t*1000, I); ylim([min(I)-.01,max(I)+.01]); grid; % ylim([-100 100]);
+legend('Stimulation Current', 'Location', 'northwest');
 ylabel({'$I (nA)$'},'Interpreter','latex');
 
 subplot(5,1,[3, 4, 5]); plot(t*1000, V4*1000); % ylim([-100, 60]); grid;

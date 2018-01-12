@@ -39,16 +39,17 @@ fs   = 100;
 dt   = 1/fs; % 0.01
 
 % initialize stimulaiton current
-I_stim1 = 17.5;     % nA 
-freq1   = 1.0;    % 0.01 => 10 Hz
+I_stim1 = 17.5;    % nA 
+freq1   = 1.0;     % 0.01 => 10 Hz
 
-I_stim2 = 17.5;   % nA 
+I_stim2 = 17.5;    % nA 
 freq2   = 1.01;    % 0.01 => 10 Hz
 
-I_stim3 = 0;   % nA 
+I_stim3 = 0;       % nA 
 freq3   = 1.02;    % 0.01 => 10 Hz
 
-MHH( I_stim1, freq1, I_stim2, freq2, I_stim3, freq3, tend, dt );
+slope = .05; % this is in the units of the current over time!
+MHH( I_stim1, freq1, I_stim2, freq2, I_stim3, freq3, tend, dt, slope );
 
 %% Effect of pure sinusoids near electrode
 
@@ -96,22 +97,27 @@ freq2   = 1.01;    % 0.01 => 10 Hz
 I_stim3 = 0;   % nA 
 freq3   = 1.02;    % 0.01 => 10 Hz
 
-MHH( I_stim1, freq1, I_stim2, freq2, I_stim3, freq3, tend, dt );
+slope = 3e-5; % change to 1, if you do not want a ramp
+
+MHH( I_stim1, freq1, I_stim2, freq2, I_stim3, freq3, tend, dt, slope );
 
 %% VCN model
+clear all
 
 % initializing simulation param
-tend = 500e-3;
+tend = 1000e-3;
 fs   = 30e3;
 
 % initialize stimulaiton current
-I_stim1 = .1;    % nA 
+I_stim1 = 2.5;    % nA 
 freq1   = 10;    % Hz
 
 I_stim2 = 0;     % nA 
-freq2   = 1.01;  % Hz
+freq2   = 1010;  % Hz
 
 I_stim3 = 0;     % nA 
 freq3   = 1.02;  % Hz
 
-VCN( I_stim1, freq1, I_stim2, freq2, I_stim3, freq3, tend, fs, 'I-II' );
+slope =  .00005;
+
+VCN( I_stim1, freq1, I_stim2, freq2, I_stim3, freq3, tend, fs, slope, 'II' );
