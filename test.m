@@ -46,7 +46,7 @@ I_stim1 = 17.5;    % nA
 freq1   = stim_freq;     % 0.01 => 10 Hz
 
 I_stim2 = 17.5;    % nA 
-freq2   = stim_freq + .001;    % 0.01 => 10 Hz
+freq2   = stim_freq + .0;    % 0.01 => 10 Hz
 
 I_stim3 = 0;       % nA 
 freq3   = stim_freq + .02;    % 0.01 => 10 Hz
@@ -146,7 +146,7 @@ I_stim1 = 5;    % nA
 freq1   = stim_freq;    % Hz
 
 I_stim2 = 5;     % nA 
-freq2   = stim_freq + 0;  % Hz
+freq2   = stim_freq + 25;  % Hz
 
 I_stim3 = 0;     % nA 
 freq3   = stim_freq + 1.02;  % Hz
@@ -154,7 +154,10 @@ freq3   = stim_freq + 1.02;  % Hz
 VCN( I_stim1, freq1, I_stim2, freq2, I_stim3, freq3, tend, fs, slope, neuron_type );
 %% 
 
-% ** First run the normalization (to 1) code from the first cell!
+% normalize them (max AM signal must be 1)
+dataR_H  = dataR_H/max(dataAM_H);
+dataL_H  = dataL_H/max(dataAM_H);
+dataAM_H = dataAM_H/max(dataAM_H);
 
 % Multiply the normalized data with the value found above (35)
 dataR_H  = dataR_H * 10;  % (5 + 5)
@@ -162,14 +165,16 @@ dataL_H  = dataL_H * 10;
 dataAM_H = dataAM_H * 10;
 figure; plot(1:numel(dataL_H), dataL_H,...
              1:numel(dataR_H), dataR_H,...
+             1:numel(dataR_H), dataR_H+dataL_H,...
              1:numel(dataR_H), dataAM_H,...
              'LineWidth', 3);
 title('Scaled')
+legend('left e-field', 'right e-field', 'sum of the e-fields', 'modulation amplitude')
 grid; axis tight
 
 %% Slide!
 
-index = 10;
+index = 250;
 dataL_point  = dataL_H(index);
 dataR_point  = dataR_H(index);
 dataAM_point = dataAM_H(index);
@@ -185,6 +190,7 @@ scatter(index, dataR_point, 50, 'k');
 scatter(index, dataR_point+dataL_point, 50, 'k');
 scatter(index, dataAM_point, 50, 'k'); hold off;
 title('Stimulation Amplitude')
+legend('left e-field', 'right e-field', 'sum of the e-fields', 'modulation amplitude')
 
 % initializing simulation param
 tend = 2000e-3; % 2sec
@@ -199,7 +205,7 @@ I_stim1 = dataL_point;    % nA
 freq1   = stim_freq;    % Hz
 
 I_stim2 = dataR_point;     % nA 
-freq2   = stim_freq + 20;  % Hz
+freq2   = stim_freq + 25;  % Hz
 
 I_stim3 = 0;     % nA 
 freq3   = stim_freq + 1.02;  % Hz
