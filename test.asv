@@ -46,7 +46,7 @@ I_stim1 = 17.5;    % nA
 freq1   = stim_freq;     % 0.01 => 10 Hz
 
 I_stim2 = 17.5;    % nA 
-freq2   = stim_freq + .001;    % 0.01 => 10 Hz
+freq2   = stim_freq + .00;    % 0.01 => 10 Hz
 
 I_stim3 = 0;       % nA 
 freq3   = stim_freq + .02;    % 0.01 => 10 Hz
@@ -311,7 +311,6 @@ for freq_diff = 1:numel(freq_response)
     freq_response(freq_diff) = sum(V>0);
     
 end
-figure;
 plot(freq_response); title('Phasic Neuron Frequency Response')
 xlabel('Modulation frequency (Hz)');
 ylabel('Neuron activity');
@@ -332,21 +331,20 @@ freq_response = zeros(1,300);
 for freq_diff = 1:numel(freq_response)
 
     % initialize stimulaiton current
-    I_stim1 = 17.5;    % nA 
+    I_stim1 = 15;    % nA 
     freq1   = stim_freq;     % 0.01 => 10 Hz
 
-    I_stim2 = 17.5;    % nA 
+    I_stim2 = 15;    % nA 
     freq2   = stim_freq + freq_diff/1000;    % 0.01 => 10 Hz
 
     I_stim3 = 0;       % nA 
     freq3   = stim_freq + .02;    % 0.01 => 10 Hz
 
-    V = MHH_freq( I_stim1, freq1, I_stim2, freq2, I_stim3, freq3, tend, dt, slope );
+    MHH_freq( I_stim1, freq1, I_stim2, freq2, I_stim3, freq3, tend, dt, slope );
     
     freq_response(freq_diff) = sum(V>0);
     
 end
-figure
 plot(freq_response); title('Tonic Neuron Frequency Response')
 xlabel('Modulation frequency');
 ylabel('Neuron activity');
