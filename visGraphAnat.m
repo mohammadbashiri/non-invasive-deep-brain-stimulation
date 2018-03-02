@@ -18,12 +18,13 @@ sq = @squeeze;
 
 %% Generate spherical grid
 
-n=101;                      % number of points that you want
+n = 101;                      % number of points that you want
 radius = 10; %coorInfo(1,1)*5/6;                 % radius of the circle
 radiusRes = 0.02;
 center = [0 ,0, 0];
 
-[x, y ,z] = sphereGrid(radius, radiusRes, n, center);
+[x, y, z]  = sphereGrid(radius, radiusRes, n, center);
+
 
 % display the grid
 % scatter3(x, y, z, ones(size(z))); hold on;
@@ -65,7 +66,7 @@ for i = 1:numel(charge)
     [eFieldVec(1,:,i), eFieldVec(2,:,i), eFieldVec(3,:,i)] = eField(charge(i), coor(:,i), x, y, z);
 end
 
-eFieldVec = eFieldVec .* 7;
+eFieldVec = eFieldVec .* 7; % TODO: this must eb removed!
 
 %% combine the electric fields
 
@@ -177,37 +178,37 @@ shading interp; view(0,90); h = colorbar; ylabel(h, {'Modulation Amplitude', '(N
 h.Location = 'northoutside'; h.AxisLocation = 'out';
 
 subplot(2,4,[5,6,7]); hold on;
-scatter(x(z==0 & y==line), eFieldAM_amp(z==0 & y==line), 'filled');
-scatter(x(z==0 & y==line), eFieldComb_amp(1, z==0 & y==line), 'filled');
-scatter(x(z==0 & y==line), eFieldComb_amp(2, z==0 & y==line), 'filled');
+plot(x(z==0 & y==line), eFieldAM_amp(z==0 & y==line), 'lineWidth', 5);
+plot(x(z==0 & y==line), eFieldComb_amp(1, z==0 & y==line), 'lineWidth', 5);
+plot(x(z==0 & y==line), eFieldComb_amp(2, z==0 & y==line), 'lineWidth', 5);
 xlabel('X'); ylabel('Electric Field (N/C)'); grid;
 legend('E-field modulation amplutide', 'Left Electrode E-field', 'Right Electrode E-field')
 legend('Location','north')
 
 subplot(2,4,[4,8]); hold on;
-scatter(eFieldAM_amp(z==0 & x==line), y(z==0 & x==line), 'filled');
-scatter(eFieldComb_amp(1, z==0 & x==line), y(z==0 & x==line), 'filled');
-scatter(eFieldComb_amp(2, z==0 & x==line), y(z==0 & x==line), 'filled');
+plot(eFieldAM_amp(z==0 & x==line), y(z==0 & x==line), 'lineWidth', 5);
+plot(eFieldComb_amp(1, z==0 & x==line), y(z==0 & x==line), 'lineWidth', 5);
+plot(eFieldComb_amp(2, z==0 & x==line), y(z==0 & x==line), 'lineWidth', 5);
 xlabel('Electric Field (N/C)'); ylabel('Y'); grid;
 set(gca,'XAxisLocation','bottom','xdir','reverse','YAxisLocation','right');
 
 %% saving stuff
 
-% % data from the horizontal line
-% dataAM_H = unique(eFieldAM_amp(z==0 & y==line));      filenameAM = 'AM_H.mat';
-% dataL_H  = unique(eFieldComb_amp(1, z==0 & y==line)); filenameL  = 'L_H.mat';
-% dataR_H  = unique(eFieldComb_amp(2, z==0 & y==line)); filenameR  = 'R_H.mat';
-% save(filenameAM, 'dataAM_H');
-% save(filenameL, 'dataL_H');
-% save(filenameR, 'dataR_H');
-% 
-% % data from the vertical line
-% dataAM_V = unique(eFieldAM_amp(z==0 & x==line));      filenameAM = 'AM_V.mat';
-% dataL_V  = unique(eFieldComb_amp(1, z==0 & x==line)); filenameL  = 'L_V.mat';
-% dataR_V  = unique(eFieldComb_amp(2, z==0 & x==line)); filenameR  = 'R_V.mat';
-% save(filenameAM, 'dataAM_V');
-% save(filenameL, 'dataL_V');
-% save(filenameR, 'dataR_V');
+% data from the horizontal line
+dataAM_H = eFieldAM_amp(z==0 & y==line);      filenameAM = 'Figures/AM_H.mat';
+dataL_H  = eFieldComb_amp(1, z==0 & y==line); filenameL  = 'Figures/L_H.mat';
+dataR_H  = eFieldComb_amp(2, z==0 & y==line); filenameR  = 'Figures/R_H.mat';
+save(filenameAM, 'dataAM_H');
+save(filenameL, 'dataL_H');
+save(filenameR, 'dataR_H');
+
+% data from the vertical line
+dataAM_V = eFieldAM_amp(z==0 & x==line);      filenameAM = 'Figures/AM_V.mat';
+dataL_V  = eFieldComb_amp(1, z==0 & x==line); filenameL  = 'Figures/L_V.mat';
+dataR_V  = eFieldComb_amp(2, z==0 & x==line); filenameR  = 'Figures/R_V.mat';
+save(filenameAM, 'dataAM_V');
+save(filenameL, 'dataL_V');
+save(filenameR, 'dataR_V');
 
 end
 

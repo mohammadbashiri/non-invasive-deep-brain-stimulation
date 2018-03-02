@@ -83,8 +83,8 @@ for t_cnt = (1:size(I_input_,2))
 I_A_(t_cnt)=I_A;
 
     w_inf=(1+exp(-(V+48e-3)/6e-3))^-0.25;
-    z_inf=0.5 / (1+exp((V+71e-3)/10e-3)) + 0.5;
-    tau_w= (100/(6*exp((V+60e-3)/6e-3)+16*exp(-(V+60e-3)/45e-3)) +1.5)/1000; % s
+    z_inf= 0.5 / (1+exp((V+71e-3)/10e-3)) + 0.5;
+    tau_w= (100/(6*exp((V+60e-3)/6e-3)+16*exp(-(V+60e-3)/45e-3)) + 1.5)/1000; % s  % 1 was 100
     tau_z=(1000/(  exp((V+60e-3)/20e-3)+exp(-(V+60e-3)/8e-3)) +50)/1000; % s
     w=w+(w_inf-w)*DT/tau_w;
     z=z+(z_inf-z)*DT/tau_z;
@@ -108,10 +108,11 @@ I_HT_(t_cnt)=I_HT;
     I_Na=g_Na*m*m*m*h*(V-V_Na);
 I_Na_(t_cnt)=I_Na;
 
-    r_inf=1./(1+exp((V+76e-3)/7e-3));                          %// hyperpol activated cation current
+    r_inf= 1./(1+exp((V+76e-3)/7e-3));                          %// hyperpol activated cation current
     tau_r=(1e5/(237*exp((V+60e-3)/12e-3)+17*exp(-(V+60e-3)/14e-3)) +25)/1000; % s
     r=r+(r_inf-r)*DT/tau_r;
     I_h=g_h*r*(V-V_h);
+    
 I_h_(t_cnt)=I_h;
 
     I_lk=g_lk*(V-V_lk);                             %// leakage current

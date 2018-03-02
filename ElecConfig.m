@@ -1,13 +1,20 @@
 close all
 clear all
 
+% coorInfo:
+%   row 1 -> radius
+%   row 2 -> phi   -> range: 0 ~ 2pi
+%   row 3 -> theta -> range: 0 ~ pi
+
+
+
 dim = '-';
 
-charge      = [-1 -1 +1 +1];
-grouped     = [1 3; 2 4];
-coorInfo    = [ 15,  15, 15, 15;...  % radius 
-               -150,  -30, 150,  30;...  % alpha (xy coordinate)
-                90,   90,  90,  90];
+% charge      = [-1 -1 +1 +1];
+% grouped     = [1 3; 2 4];
+% coorInfo    = [ 15,  15, 15, 15;...  % radius 
+%                -150,  -30, 150,  30;...  % alpha (xy coordinate)
+%                 90,   90,  90,  90];
             
 % paper result - DONT FORGET make x dimension 0!
 % charge      = [-1 -1 +1 +1];
@@ -156,9 +163,9 @@ coorInfo    = [ 15,  15, 15, 15;...  % radius
 % 
 % % dipole
 % charge      = [-1 +1 -1 +1];
-% grouped     = [1 2; 3 4];
-% coorInfo    = [ 1.2,  1.2, 1.2, 1.2;...  % radius 
-%                -175,  -185, 5,  -5;...  % alpha (xy coordinate)
+% grouped     = [1 4; 3 2];
+% coorInfo    = [ 12,  12, 12, 12;...  % radius 
+%                -175,  -185, -5,  +5;...   % alpha (xy coordinate)
 %                 90,   90,  90,  90];
 
 % % dipole rotated
@@ -169,12 +176,12 @@ coorInfo    = [ 15,  15, 15, 15;...  % radius
 %                -175,  -185, 5,  -5];
             
 % tripole
-% charge      = [-1 +1 -1, -1*2.5 +1*2.5 -1*2.5];
+% charge      = [-1 +1 -1, -1 +1 -1];
 % grouped     = [1 2 3; 4 5 6];
-% coorInfo    = [ 1.2,  1.2, 1.2, 1.2, 1.2, 1.2;...  % radius 
+% coorInfo    = [ 12,  12, 12, 12, 12, 12;...  % radius 
 %                -175, -180,  -185,   5,   0  -5;...  % alpha (xy coordinate)
 %                  90,   90,    90,  90,  90, 90];
-             
+
 % % tripole Rotated
 % charge      = [-1 +1 -1, -1 +1 -1];
 % grouped     = [1 2 3; 4 5 6];
@@ -196,6 +203,60 @@ coorInfo    = [ 15,  15, 15, 15;...  % radius
 % coorInfo    = [1.2, 1.2,  1.2, 1.2, 1.2, 1.2, 1.2, 1.2, 1.2, 1.2;...  % radius 
 %                95,   90,   90,    90,   85, 95, 90,  90, 90, 85;...  % alpha (xy coordinate)
 %                -180, -175, -180,  -185, -180,  0,  5,   0, -5, 0;];
+
+%% Exploring the result of Buzasky paper (monopole) 
+
+% -45 degrees
+% charge      = [-1 +1 -1 +1];
+% grouped     = [1 2;3 4];
+% coorInfo    = [  12, 12, 12, 12;...  % radius 
+%                 135, -45,  -185, -5;...  % alpha (xy coordinate)
+%                  90, 90, 90, 90];
              
+% % 0 degrees             
+% charge      = [-1 +1 -1 +1];
+% grouped     = [1 2;3 4];
+% coorInfo    = [  12, 12, 12, 12;...  % radius 
+%                  180, 0,  -185, -5;...  % alpha (xy coordinate)
+%                  90, 90, 90, 90];             
+ 
+% % 45 degrees             
+% charge      = [-1 +1 -1 +1];
+% grouped     = [1 2;3 4];
+% coorInfo    = [  12, 12, 12, 12;...  % radius 
+%                  -135, 45,  -185, -5;...  % alpha (xy coordinate)
+%                  90, 90, 90, 90];
+
+%% dipole witth rotation
+
+% 0 degres
+charge      = [-1 +1 -1 +1];
+grouped     = [1 2; 3 4];
+coorInfo    = [  12, 12, 12, 12;...  % radius 
+                210,  150, -30,  30;...  % alpha (xy coordinate)
+                 90, 90, 90, 90];
+
+% -45 degrees             
+% charge      = [-1 +1 -1 +1];
+% grouped     = [1 2; 3 4];
+% coorInfo    = [  12, 12, 12, 12;...  % radius 
+%                 150,  210, -30,  30;...  % alpha (xy coordinate)
+%                  135, 135, 45, 45];
+
+% +45 degrees              
+% charge      = [-1 +1 -1 +1];
+% grouped     = [1 2; 3 4];
+% coorInfo    = [  12, 12, 12, 12;...  % radius 
+%                 150,  210, -30,  30;...  % alpha (xy coordinate)
+%                  45, 45, 135, 135];
              
+% +90 degrees                
+% charge      = [-1 +1 -1 +1];
+% grouped     = [1 2; 3 4];
+% coorInfo    = [ 12,  12,  12, 12;...  % radius
+%                 90,  90,  90, 90;...  % alpha (xy coordinate)
+%                185,  175, -5,  5];
+
+             
+%% Run the simulation
 visGraphAnat( charge, grouped, coorInfo, dim );

@@ -115,8 +115,8 @@ V1 = VCN_I(-100e-12*I_E,  g_Na,g_HT,g_LT,g_A,g_h,g_lk,V_0, f_s);
 V2 = VCN_I(+100e-12*I_E,  g_Na,g_HT,g_LT,g_A,g_h,g_lk,V_0, f_s);
 V3 = VCN_I(-150e-12*I_E,  g_Na,g_HT,g_LT,g_A,g_h,g_lk,V_0, f_s);
 V4 = VCN_I(+150e-12*I_E,  g_Na,g_HT,g_LT,g_A,g_h,g_lk,V_0, f_s);
-figure; plot(I_E);
-figure; %subplot(2,2,4)
+% figure; plot(I_E);
+subplot(2,2,4)
 plot(t*1000, V1*1000,...  
      t*1000, V2*1000,...
      t*1000, V3*1000,...

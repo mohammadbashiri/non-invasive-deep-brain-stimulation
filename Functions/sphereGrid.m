@@ -35,5 +35,11 @@ x = round(x,4);
 y = round(y,4);
 z = round(z,4);
 
+grid_val = [x'; y'; z']';
+grid_val = unique(grid_val, 'rows');
+x = grid_val(:,1);
+y = grid_val(:,2);
+z = grid_val(:,3);
+
 end
 

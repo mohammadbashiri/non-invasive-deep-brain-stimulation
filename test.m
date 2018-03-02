@@ -131,28 +131,85 @@ VCN( I_stim1, freq1, I_stim2, freq2, I_stim3, freq3, tend, fs, slope, neuron_typ
 % threshold: 5 for each signal, which means for modulated signal we have 5
 % + 5 = 10
 
-clear all
+clear all;
+% close all;
 
 % initializing simulation param
-tend = 2000e-3; % 2sec
-fs   = 30e3;
+tend = 1000e-3; % 2sec
+fs   = 1e6;
+
+% NOTE!!!!! 
+% the injected current must be negative to work according to the paper,
+% although this does not really matter for AC, but it matters for DC (as 
+% we reduce the frequency!)
+% type I-II -> -.1
+% type II   -> -.3
+
 
 neuron_type = 'II';
-slope =  .00005;
-stim_freq = 3000;
+slope =  1; %.000005;
+stim_freq = 1000; % Hz         % 60
 
 % initialize stimulaiton current
-I_stim1 = 5;    % nA 
+I_stim1 = -.18/2;         % nA  % -.18 
 freq1   = stim_freq;    % Hz
 
-I_stim2 = 5;     % nA 
-freq2   = stim_freq + 25;  % Hz
+I_stim2 = -.18/2;     % nA 
+freq2   = stim_freq + 60; % Hz
 
 I_stim3 = 0;     % nA 
 freq3   = stim_freq + 1.02;  % Hz
 
 VCN( I_stim1, freq1, I_stim2, freq2, I_stim3, freq3, tend, fs, slope, neuron_type );
-%% 
+
+%% VCN model: Chirp input to chaarcterize the membrane transfer function (i.e., impedance)!
+% dont forget to comment out the sin part in the VCN function
+
+clear all;
+% close all;
+
+% initializing simulation param
+tend = 2000e-3; % 2sec
+fs   = 1e6;
+t    = 0:1/fs:tend-1/fs;
+
+neuron_type = 'II';
+f_start = 1; % Hz
+f_end   = 500; % Hz
+
+% initialize stimulaiton current
+I_stim1 = -.015 * genChirp(t, f_start, tend, f_end); % nA sub: -.15
+VCN( I_stim1, 0, 0, 0, 0, 0, tend, fs, 1, neuron_type );
+xlim([20 1000])
+% xlim([0, f_end]);
+% xticks(0:200:tend*1e3);
+% xticklabels({linspace(f_start,f_end, length(0:200:tend*1e3))});
+xlabel('Frequency [Hz]');
+
+%% chirp AM: given fr change the carrier frequency
+
+clear all;
+% close all;
+
+% initializing simulation param
+tend = 2000e-3; % 2sec
+fs   = 1e6;
+t = 0:1/fs:tend-1/fs;
+
+neuron_type = 'II';
+fc_start    = 0;    % Hz
+fc_end      = 3000; % 200
+fr          = 60;   % delta_f/2
+
+% initialize stimulaiton current
+I_stim1 = -10/3 * genChirpAM(t, fc_start, tend, fc_end, fr); % nA
+
+VCN( I_stim1, 0, 0, 0, 0, 0, tend, fs, 1, neuron_type );
+xticks(0:200:tend*1e3);
+xticklabels({linspace(fc_start,fc_end, length(0:200:tend*1e3))});
+xlabel('Frequency [Hz]');
+
+%%
 
 % normalize them (max AM signal must be 1)
 dataR_H  = dataR_H/max(dataAM_H);
@@ -194,7 +251,7 @@ legend('left e-field', 'right e-field', 'sum of the e-fields', 'modulation ampli
 
 % initializing simulation param
 tend = 2000e-3; % 2sec
-fs   = 30e3;
+fs   = 1e6;
 
 neuron_type = 'II';
 slope =  .00005;

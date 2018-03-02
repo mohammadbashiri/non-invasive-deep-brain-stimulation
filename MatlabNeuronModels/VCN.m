@@ -22,19 +22,9 @@ elseif strcmp(type, 'I-t')
     g_h  = 0.5e-9;           %// nS
     g_lk = 2e-9;             %// nS
     V_0  = -64.2e-3;         %// -64.2mV   resting potential for START
-    
-elseif strcmp(type, 'II')
-    
-    g_Na = 1000e-9;          %// 1000nS
-    g_HT = 150e-9;           %// nS
-    g_LT = 200e-9;           %// nS
-    g_A  = 0e-9;             %// nS
-    g_h  = 20e-9;            %// nS
-    g_lk = 2e-9;             %// nS
-    V_0  = -63.6e-3;         %// -63.6mV   resting potential for START
-            
-elseif strcmp(type, 'I-II')
 
+elseif strcmp(type, 'I-II')
+    disp('we came here!')
     g_Na = 1000e-9;          %// 1000nS
     g_HT = 150e-9;           %// nS
     g_LT = 20e-9;            %// nS
@@ -42,6 +32,26 @@ elseif strcmp(type, 'I-II')
     g_h  = 2e-9;             %// nS
     g_lk = 2e-9;             %// nS
     V_0  = -64.1e-3;         %// -64.1mV   resting potential for START
+    
+elseif strcmp(type, 'II')
+    
+    g_Na = 1000e-9;          %// 1000nS
+    g_HT = 150e-9;           %// nS
+    g_LT = 200e-9;           %// nS Mohd: it was 200e-9!!!!!!!
+    g_A  = 0e-9;             %// nS
+    g_h  = 20e-9;            %// nS
+    g_lk = 2e-9;             %// nS
+    V_0  = -63.6e-3;         %// -63.6mV   resting potential for START
+    
+elseif strcmp(type, 'II-I')
+    
+    g_Na = 1000e-9;          %// 1000nS
+    g_HT = 150e-9;           %// nS
+    g_LT = 35e-9;            %// nS
+    g_A  = 0e-9;             %// nS
+    g_h  = 35e-9;            %// nS
+    g_lk = 2e-9;             %// nS
+    V_0  = -63.8e-3;         %// -63.8mV   resting potential for START
 
     
 else
@@ -51,13 +61,13 @@ end
     
 
 % initialization
-Tonset = 50e-3;      % s delay onset
+Tonset = 0e-3;      % s delay onset
 t      = (1:T*f_s)/f_s;
 
 % initialize stimulaiton current
-I1      = I_stim1 * sin(2*pi*freq1*t);
-I2      = I_stim2 * sin(2*pi*freq2*t);
-I3      = I_stim3 * sin(2*pi*freq3*t);
+I1      = I_stim1; % * cos(2*pi*freq1*t);
+I2      = I_stim2 * cos(2*pi*freq2*t);
+I3      = I_stim3 * cos(2*pi*freq3*t);
 
 I = I1 + I2 + I3;
 I(1:Tonset*f_s) = 0; % No stimulation first 50 miliseconds to zero
@@ -79,7 +89,7 @@ subplot(5,1,[1, 2]); plot(t*1000, I); ylim([min(I)-.01,max(I)+.01]); grid; % yli
 legend('Stimulation Current', 'Location', 'northwest');
 ylabel({'$I (nA)$'},'Interpreter','latex');
 
-subplot(5,1,[3, 4, 5]); plot(t*1000, V4*1000); grid; % ylim([-100, 60]);
+subplot(5,1,[3, 4, 5]); semilogx(t*1000, V4*1000); grid; % ylim([-100, 60]);
 legend('Action Potential', 'Location', 'southwest')
 xlabel({'$Time (ms)$'},'Interpreter','latex');
 ylabel({'$Membrane voltage (mV)$'},'Interpreter','latex');
