@@ -89,7 +89,7 @@ subplot(5,1,[1, 2]); plot(t*1000, I); ylim([min(I)-.01,max(I)+.01]); grid; % yli
 legend('Stimulation Current', 'Location', 'northwest');
 ylabel({'$I (nA)$'},'Interpreter','latex');
 
-subplot(5,1,[3, 4, 5]); semilogx(t*1000, V4*1000); grid; % ylim([-100, 60]);
+subplot(5,1,[3, 4, 5]); plot(t*1000, V4*1000); grid; % ylim([-100, 60]);
 legend('Action Potential', 'Location', 'southwest')
 xlabel({'$Time (ms)$'},'Interpreter','latex');
 ylabel({'$Membrane voltage (mV)$'},'Interpreter','latex');

@@ -21,7 +21,7 @@ freq3   = 1.02;    % 0.01 => 10 Hz
 I3      = I_stim3 * sin(2*pi*freq3*t);
 % 
 I = I1 * 5;
-% I = ones(1,N)*1.2;
+I = ones(1,N)*1.2;
 
 I(1:50*fs) = 0; % No stimulation first 50 miliseconds to zero
 

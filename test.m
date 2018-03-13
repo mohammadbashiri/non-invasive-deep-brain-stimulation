@@ -169,21 +169,21 @@ clear all;
 % close all;
 
 % initializing simulation param
-tend = 2000e-3; % 2sec
-fs   = 1e6;
+tend = 20000e-3; % 2sec
+fs   = 1e4;
 t    = 0:1/fs:tend-1/fs;
 
 neuron_type = 'II';
-f_start = 1; % Hz
+f_start = .1; % Hz
 f_end   = 500; % Hz
 
 % initialize stimulaiton current
-I_stim1 = -.015 * genChirp(t, f_start, tend, f_end); % nA sub: -.15
+I_stim1 = -.015 * chirp(t, f_start, tend, f_end);  % genChirp(t, f_start, tend, f_end); % nA sub: -.15
 VCN( I_stim1, 0, 0, 0, 0, 0, tend, fs, 1, neuron_type );
-xlim([20 1000])
+% xlim([20 1000])
 % xlim([0, f_end]);
-% xticks(0:200:tend*1e3);
-% xticklabels({linspace(f_start,f_end, length(0:200:tend*1e3))});
+xticks(0:2000:tend*1e3);
+xticklabels({round(linspace(f_start,f_end, length(0:2000:tend*1e3)))});
 xlabel('Frequency [Hz]');
 
 %% chirp AM: given fr change the carrier frequency
