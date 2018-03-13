@@ -2,7 +2,7 @@ close all; clear all;
 
 % initializing simulation param
 tend = 300;
-fs   = 100;
+fs   = 10000;
 dt   = 1/fs;
 t    = 0:dt:tend-dt;
 N    = numel(t); 
@@ -19,8 +19,8 @@ I2      = I_stim2 * sin(2*pi*freq2*t);
 I_stim3 = 13;   % nA 
 freq3   = 1.02;    % 0.01 => 10 Hz
 I3      = I_stim3 * sin(2*pi*freq3*t);
-
-I = I1 + I2 + I3;
+% 
+I = I1 * 5;
 % I = ones(1,N)*1.2;
 
 I(1:50*fs) = 0; % No stimulation first 50 miliseconds to zero

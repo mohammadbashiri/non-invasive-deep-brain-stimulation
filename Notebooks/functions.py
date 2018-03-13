@@ -23,7 +23,7 @@ def gen_chirp(Chirp_init_freq=None, Chirp_init_time=0, Chirp_end_freq=None, Chir
     freq_ls.extend(list(Chirp_freqs))
     freq_ls.extend([Chirp_end_freq] * Chirp_signal_end.shape[0])
     
-    freq_ls = np.array(freq_ls) * 2
+    freq_ls = np.linspace(Chirp_init_freq, Chirp_end_freq, time_points.shape[0])
     
     return (Chirp_signal, freq_ls) # TODO: add another output to display the frequencies
 
@@ -46,17 +46,17 @@ def gen_sin(init_time=0, freq=None, phase=0, time_points=None):
     return sin_signal
     
     
-def gen_pulse(init_time=0, on_width=0, off_width=10, time_points=None):
+def gen_pulse(init_time=0, on_width=0., off_width=10., time_points=None):
     
     Sim_fs = int(1/(time_points[1] - time_points[0]))
     
     pulse_signal = np.zeros(time_points.shape)
     
-    on_signal = np.ones((on_width*Sim_fs,))
-    off_signal = np.zeros((off_width*Sim_fs,))
+    on_signal = np.ones((int(on_width)*Sim_fs,))
+    off_signal = np.zeros((int(off_width)*Sim_fs,))
     on_off_signal = np.concatenate((on_signal, off_signal), axis=0)
     
-    one_pulse_time = on_width + off_width
+    one_pulse_time = int(on_width) + int(off_width)
     repeat = int((time_points[-1] - init_time) // one_pulse_time)
     
     end_time = init_time + repeat * one_pulse_time
