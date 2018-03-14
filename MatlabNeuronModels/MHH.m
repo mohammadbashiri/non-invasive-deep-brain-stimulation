@@ -19,6 +19,9 @@ I3      = I_stim3 * sin(2*pi*freq3*t);
 I = I1 + I2 + I3;
 % I = ones(1,N)*1.2;
 
+% chirp
+I = chirp(t, 1.0001, tend, 1.02) * I_stim1 + I;
+
 I(1:T_on*fs) = 0; % No stimulation first 50 miliseconds to zero
 
 % compute the ramp
@@ -95,13 +98,13 @@ for i=1:N-1
 end
 
 figure;
-subplot(5,1,[1, 2]); plot(t, I); ylim([min(I)-10,max(I)+10]); grid; ylim([-100 100]);
+subplot(5,1,[1, 2]); plot(t / 1000, I); ylim([min(I)-10,max(I)+10]); grid; ylim([-100 100]);
 legend('Current Density', 'Location', 'northwest');
-ylabel({'$I(\mu A/cm^2)$'},'Interpreter','latex');
+ylabel({'$I(nA/cm^2)$'},'Interpreter','latex');
 
-subplot(5,1,[3, 4, 5]); plot(t, u); ylim([-100, 60]); grid;
+subplot(5,1,[3, 4, 5]); plot(t / 1000, u); ylim([-100, 60]); grid;
 legend('Action Potential', 'Location', 'northwest')
-xlabel({'$Time (ms)$'},'Interpreter','latex');
+xlabel({'$Time (s)$'},'Interpreter','latex');
 ylabel({'$V_m (mV)$'},'Interpreter','latex');
 
 suptitle({'Hodgkin Huxley Model', '(Mammalian Neuron)'});

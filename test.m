@@ -34,18 +34,20 @@ grid; axis tight
 %% Simulation
 
 % initializing simulation param
-tend = 2000;
+tend = 20000;
 fs   = 100;
 dt   = 1/fs; % 0.01
 
 slope = 5e-5; % this is in the units of the current over time!
 stim_freq = 1.0; % kHz
 
+I_stim = 31.45;
+
 % initialize stimulaiton current
-I_stim1 = 17.5;    % nA 
+I_stim1 = I_stim / 2;    % nA 
 freq1   = stim_freq;     % 0.01 => 10 Hz
 
-I_stim2 = 17.5;    % nA 
+I_stim2 = I_stim / 2;    % nA 
 freq2   = stim_freq + .0;    % 0.01 => 10 Hz
 
 I_stim3 = 0;       % nA 
