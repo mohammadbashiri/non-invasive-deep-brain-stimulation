@@ -1,6 +1,20 @@
 import numpy as np
 from scipy.signal import chirp, spectrogram
 
+<<<<<<< HEAD
+def gen_chirp(Chirp_init_freq=None, Chirp_init_time=0, Chirp_end_freq=None, Chirp_end_time=None, time_points=None, **kwargs):
+
+    Chirp_signal = chirp(time_points, f0=Chirp_init_freq, f1=Chirp_end_freq, t1=Chirp_end_time, **kwargs)
+    
+    if len(kwargs) > 0:
+        if kwargs['method'] == 'logarithmic':
+            freq_ls = Chirp_init_freq * (Chirp_end_freq/Chirp_init_freq)**(time_points/Chirp_end_time)
+        elif kwargs['method'] == 'linear':
+            freq_ls = np.linspace(Chirp_init_freq, Chirp_end_freq, time_points.shape[0])
+        
+    else:
+        freq_ls = np.linspace(Chirp_init_freq, Chirp_end_freq, time_points.shape[0])
+=======
 def gen_chirp(Chirp_init_freq=None, Chirp_init_time=0, Chirp_end_freq=None, Chirp_end_time=None, time_points=None):
     
 #    Sim_fs = int(1/(time_points[1] - time_points[0]))
@@ -26,6 +40,7 @@ def gen_chirp(Chirp_init_freq=None, Chirp_init_time=0, Chirp_end_freq=None, Chir
 
     Chirp_signal = chirp(time_points, f0=Chirp_init_freq, f1=Chirp_end_freq, t1=Chirp_end_time, method='linear')
     freq_ls = np.linspace(Chirp_init_freq, Chirp_end_freq, time_points.shape[0])
+>>>>>>> 49ab52c98d8666038ac8bd2ce1a4c4682b8f8873
     
     return (Chirp_signal, freq_ls) # TODO: add another output to display the frequencies
 

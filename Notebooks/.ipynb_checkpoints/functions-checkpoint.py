@@ -1,30 +1,17 @@
 import numpy as np
 from scipy.signal import chirp, spectrogram
 
-def gen_chirp(Chirp_init_freq=None, Chirp_init_time=0, Chirp_end_freq=None, Chirp_end_time=None, time_points=None):
+def gen_chirp(Chirp_init_freq=None, Chirp_init_time=0, Chirp_end_freq=None, 
+              Chirp_end_time=None, time_points=None, method='linear'):
+
+    '''
+    Add documentation
     
-#    Sim_fs = int(1/(time_points[1] - time_points[0]))
+    '''
     
-#    Chirp_signal = np.zeros(time_points.shape)
-
-#    # the starting of the signal should be with the starting frequency
-#    Chirp_signal_init = np.sin(2 * np.pi * Chirp_init_freq * time_points[:int(Chirp_init_time*Sim_fs)]) 
-
-#    Chirp_freqs = np.linspace(Chirp_init_freq, Chirp_end_freq, int(Chirp_end_time*Sim_fs) - int(Chirp_init_time*Sim_fs)) / 2
-#    Chirp_signal_mid = np.sin(2 * np.pi * Chirp_freqs * time_points[int(Chirp_init_time*Sim_fs):int(Chirp_end_time*Sim_fs)])
-
-#    # the ending should be with the ending frequency
-#    Chirp_signal_end = np.sin(2 * np.pi * Chirp_end_freq * time_points[int(Chirp_end_time*Sim_fs):]) 
-
-#    Chirp_signal[:int(Chirp_init_time*Sim_fs)] = Chirp_signal_init
-#    Chirp_signal[int(Chirp_init_time*Sim_fs):int(Chirp_end_time*Sim_fs)] = Chirp_signal_mid
-#    Chirp_signal[int(Chirp_end_time*Sim_fs):] = Chirp_signal_end
+    Chirp_signal = chirp(time_points, f0=Chirp_init_freq, f1=Chirp_end_freq, t1=Chirp_end_time, method=method)
     
-#    freq_ls = [Chirp_init_freq] * Chirp_init_time*Sim_fs
-#    freq_ls.extend(list(Chirp_freqs))
-#    freq_ls.extend([Chirp_end_freq] * Chirp_signal_end.shape[0])
-
-    Chirp_signal = chirp(time_points, f0=Chirp_init_freq, f1=Chirp_end_freq, t1=Chirp_end_time, method='linear')
+    # TODO: The calculation of the frequency list must happen depending on the chosen method
     freq_ls = np.linspace(Chirp_init_freq, Chirp_end_freq, time_points.shape[0])
     
     return (Chirp_signal, freq_ls) # TODO: add another output to display the frequencies
@@ -32,6 +19,11 @@ def gen_chirp(Chirp_init_freq=None, Chirp_init_time=0, Chirp_end_freq=None, Chir
 
 
 def gen_sin(init_time=0, freq=None, phase=0, time_points=None):
+    
+    '''
+    Add documentation
+    
+    '''
     
     Sim_fs = int(1/(time_points[1] - time_points[0]))
     
@@ -49,6 +41,11 @@ def gen_sin(init_time=0, freq=None, phase=0, time_points=None):
     
     
 def gen_pulse(init_time=0, on_width=0., off_width=10., time_points=None):
+    
+    '''
+    Add documentation
+    
+    '''
     
     Sim_fs = int(1/(time_points[1] - time_points[0]))
     
@@ -71,6 +68,11 @@ def gen_pulse(init_time=0, on_width=0., off_width=10., time_points=None):
 
 
 def gen_slope(init_time=0, end_time=500, time_points=None):
+    
+    '''
+    Add documentation
+    
+    '''
     
     Sim_fs = int(1/(time_points[1] - time_points[0]))
     
