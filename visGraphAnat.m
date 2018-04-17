@@ -123,8 +123,6 @@ eFieldAM_amp   = abs(eFieldSum_amp - eFieldDiff_amp);
 eFieldComb_amp = sq(sqrt(sum((eFieldComb.^2),1)))'; 
 
 
-%% 
-
 %% set the slice and line
 
 xUniq = unique(x);
@@ -136,35 +134,34 @@ sliceNoX = ceil(numel(xUniq)/2) + 0; %y direction
 sliceNoY = ceil(numel(yUniq)/2) + 0; %y direction
 sliceNoZ = ceil(numel(zUniq)/2) + 0; %y direction
 
-% xUniq(sliceNoX)
-% yUniq(sliceNoY)
-% zUniq(sliceNoZ)
-% max(x(z==zUniq(sliceNoZ) & y==yUniq(sliceNoY)))
-
 %% plot the data with electrodes
 figure; 
+set(gca, 'FontSize', 11)
 
-% unique(y(z==0 & x==0));
 line = 0;
 
 triXY = delaunay(x(z==zUniq(sliceNoZ)),y(z==zUniq(sliceNoZ)));
 
-subplot(242); 
+figure; %subplot(242); 
 trisurf(triXY, x(z==zUniq(sliceNoZ)), y(z==zUniq(sliceNoZ)), eFieldAM_amp(z==zUniq(sliceNoZ)).*0, eFieldAM_amp(z==zUniq(sliceNoZ))); hold on;
 plot([min(x(z==zUniq(sliceNoZ) & y==yUniq(sliceNoY))) max(x(z==zUniq(sliceNoZ) & y==yUniq(sliceNoY)))], [yUniq(sliceNoY) yUniq(sliceNoY)], 'r:', 'LineWidth', 1);
 plot([xUniq(sliceNoX) xUniq(sliceNoX)], [min(y(z==zUniq(sliceNoZ) & x==xUniq(sliceNoX))) max(y(z==zUniq(sliceNoZ) & x==xUniq(sliceNoX)))], 'r:', 'LineWidth', 1);
+axis equal tight;
 plotCoor( coor, col );
-axis tight equal 
-shading interp; view(0,90); h = colorbar; ylabel(h, {'Modulation Amplitude', '(Normalized)'}); %axis vis3d
-h.Location = 'northoutside'; h.AxisLocation = 'out';
+xlim([-13, 13]); ylim([-13, 13]);
+shading interp; view(0,90); h = colorbar; ylabel(h, {'Modulation Amplitude'}); %axis vis3d
+h.Location = 'northoutside'; h.AxisLocation = 'out'; 
+set(findobj(gcf, 'type','axes'), 'Visible','off');
 
+figure;
 subplot(241); 
 trisurf(triXY, x(z==zUniq(sliceNoZ)), y(z==zUniq(sliceNoZ)), eFieldAM_amp(z==zUniq(sliceNoZ)).*0, eFieldComb_amp(1, z==zUniq(sliceNoZ))); hold on;
 plot([min(x(z==zUniq(sliceNoZ) & y==yUniq(sliceNoY))) max(x(z==zUniq(sliceNoZ) & y==yUniq(sliceNoY)))], [yUniq(sliceNoY) yUniq(sliceNoY)], 'r:', 'LineWidth', 1);
 plot([xUniq(sliceNoX) xUniq(sliceNoX)], [min(y(z==zUniq(sliceNoZ) & x==xUniq(sliceNoX))) max(y(z==zUniq(sliceNoZ) & x==xUniq(sliceNoX)))], 'r:', 'LineWidth', 1);
 plotCoor( coor, col );
-axis tight equal 
-shading interp; view(0,90); h = colorbar; ylabel(h, {'Modulation Amplitude', '(Normalized)'}); %axis vis3d
+xlim([-12, 12]); ylim([-12, 12]);
+% axis tight % equal 
+shading interp; view(0,90); h = colorbar; ylabel(h, {'Left Electrode E-field'}); %axis vis3d
 h.Location = 'northoutside'; h.AxisLocation = 'out';
 
 
@@ -173,8 +170,9 @@ trisurf(triXY, x(z==zUniq(sliceNoZ)), y(z==zUniq(sliceNoZ)), eFieldAM_amp(z==zUn
 plot([min(x(z==zUniq(sliceNoZ) & y==yUniq(sliceNoY))) max(x(z==zUniq(sliceNoZ) & y==yUniq(sliceNoY)))], [yUniq(sliceNoY) yUniq(sliceNoY)], 'r:', 'LineWidth', 1);
 plot([xUniq(sliceNoX) xUniq(sliceNoX)], [min(y(z==zUniq(sliceNoZ) & x==xUniq(sliceNoX))) max(y(z==zUniq(sliceNoZ) & x==xUniq(sliceNoX)))], 'r:', 'LineWidth', 1);
 plotCoor( coor, col );
-axis tight equal 
-shading interp; view(0,90); h = colorbar; ylabel(h, {'Modulation Amplitude', '(Normalized)'}); %axis vis3d
+xlim([-12, 12]); ylim([-12, 12]);
+% axis tight % equal 
+shading interp; view(0,90); h = colorbar; ylabel(h, {'Right Electrode E-field'}); %axis vis3d
 h.Location = 'northoutside'; h.AxisLocation = 'out';
 
 subplot(2,4,[5,6,7]); hold on;
@@ -194,21 +192,25 @@ set(gca,'XAxisLocation','bottom','xdir','reverse','YAxisLocation','right');
 
 %% saving stuff
 
-% data from the horizontal line
-dataAM_H = eFieldAM_amp(z==0 & y==line);      filenameAM = 'Figures/AM_H.mat';
-dataL_H  = eFieldComb_amp(1, z==0 & y==line); filenameL  = 'Figures/L_H.mat';
-dataR_H  = eFieldComb_amp(2, z==0 & y==line); filenameR  = 'Figures/R_H.mat';
-save(filenameAM, 'dataAM_H');
-save(filenameL, 'dataL_H');
-save(filenameR, 'dataR_H');
+save_it =false;
 
-% data from the vertical line
-dataAM_V = eFieldAM_amp(z==0 & x==line);      filenameAM = 'Figures/AM_V.mat';
-dataL_V  = eFieldComb_amp(1, z==0 & x==line); filenameL  = 'Figures/L_V.mat';
-dataR_V  = eFieldComb_amp(2, z==0 & x==line); filenameR  = 'Figures/R_V.mat';
-save(filenameAM, 'dataAM_V');
-save(filenameL, 'dataL_V');
-save(filenameR, 'dataR_V');
+if save_it
+% data from the horizontal line
+    dataAM_H = eFieldAM_amp(z==0 & y==line);      filenameAM = 'Figures/AM_H.mat';
+    dataL_H  = eFieldComb_amp(1, z==0 & y==line); filenameL  = 'Figures/L_H.mat';
+    dataR_H  = eFieldComb_amp(2, z==0 & y==line); filenameR  = 'Figures/R_H.mat';
+    save(filenameAM, 'dataAM_H');
+    save(filenameL, 'dataL_H');
+    save(filenameR, 'dataR_H');
+
+    % data from the vertical line
+    dataAM_V = eFieldAM_amp(z==0 & x==line);      filenameAM = 'Figures/AM_V.mat';
+    dataL_V  = eFieldComb_amp(1, z==0 & x==line); filenameL  = 'Figures/L_V.mat';
+    dataR_V  = eFieldComb_amp(2, z==0 & x==line); filenameR  = 'Figures/R_V.mat';
+    save(filenameAM, 'dataAM_V');
+    save(filenameL, 'dataL_V');
+    save(filenameR, 'dataR_V');
+end
 
 end
 

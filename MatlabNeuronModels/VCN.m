@@ -61,11 +61,11 @@ end
     
 
 % initialization
-Tonset = 0e-3;      % s delay onset
+Tonset = 50e-3;      % ms delay onset
 t      = (1:T*f_s)/f_s;
 
 % initialize stimulaiton current
-I1      = I_stim1; % * cos(2*pi*freq1*t);
+I1      = I_stim1 * cos(2*pi*freq1*t);
 I2      = I_stim2 * cos(2*pi*freq2*t);
 I3      = I_stim3 * cos(2*pi*freq3*t);
 
@@ -85,12 +85,12 @@ I = I .* ramp;
 V4 = VCN_I(1e-9*I,  g_Na,g_HT,g_LT,g_A,g_h,g_lk,V_0, f_s);
 
 figure;
-subplot(5,1,[1, 2]); plot(t*1000, I); ylim([min(I)-.01,max(I)+.01]); grid; % ylim([-100 100]);
-legend('Stimulation Current', 'Location', 'northwest');
+subplot(5,1,[1, 2]); plot(t*1000, I); ylim([-17.25, 17.25])%ylim([min(I)-.01,max(I)+.01]); %grid; % ylim([-100 100]);
+% legend('Stimulation Current', 'Location', 'northwest');
 ylabel({'$I (nA)$'},'Interpreter','latex');
 
-subplot(5,1,[3, 4, 5]); plot(t*1000, V4*1000); grid; % ylim([-100, 60]);
-legend('Action Potential', 'Location', 'southwest')
+subplot(5,1,[3, 4, 5]); plot(t*1000, V4*1000); %grid; % ylim([-100, 60]);
+% legend('Action Potential', 'Location', 'southwest')
 xlabel({'$Time (ms)$'},'Interpreter','latex');
 ylabel({'$Membrane voltage (mV)$'},'Interpreter','latex');
 

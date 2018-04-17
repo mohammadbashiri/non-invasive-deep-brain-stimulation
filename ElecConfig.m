@@ -1,4 +1,4 @@
-% close all
+close all
 clear all
 
 % coorInfo:
@@ -19,7 +19,7 @@ dim = '-';
 % paper result - DONT FORGET make x dimension 0!
 % charge      = [-1 -1 +1 +1];
 % grouped     = [1 3; 2 4];
-% coorInfo    = [ 1.2,  1.2, 1.2, 1.2;...  % radius 
+% coorInfo    = [ 12,  12, 12, 12;...  % radius 
 %                -170,  -10, 140,  40;...  % alpha (xy coordinate)
 %                 90,   90,  90,  90];
 % dim = 'x';
@@ -27,7 +27,7 @@ dim = '-';
 % paper result (rotated) - DONT FORGET make z dimension 0! z, because the x is now basically z!
 % charge      = [-1 -1 +1 +1];
 % grouped     = [1 3; 2 4];
-% coorInfo    = [ 1.2,  1.2, 1.2, 1.2;...  % radius 
+% coorInfo    = [ 12,  12, 12, 12;...  % radius 
 %                  90,   90,  90,  90;...  % alpha (xy coordinate)
 %                -170,  -10, 140,  40];
 % dim = 'z';
@@ -41,9 +41,9 @@ dim = '-';
 
 % charge      = [-1 -1 +1 +1 -1 -1 +1 +1];
 % grouped     = [1 2 3 4; 5 6 7 8];
-% coorInfo    = [ 1.2,  1.2, 1.2, 1.2,  1.2,  1.2, 1.2, 1.2;...  
-%                -150,  -30, 150,  30,   90,  90,  90,  90;...    
-%                  90,   90,  90,  90, -150, -30, 150,  30];  
+% coorInfo    = [ 12,  12, 12, 12,  12,  12, 12, 12;...  
+%                -135,  -45, 135,  45,   90,  90,  90,  90;...    
+%                  90,   90,  90,  90, -135, -45, 135,  45];  
 
              
 % charge      = [-1 -1 +1 +1 +1 +1];
@@ -175,15 +175,25 @@ dim = '-';
 %                90,   90,  90,  90;...  % alpha (xy coordinate)
 %                -175,  -185, 5,  -5];
 
-% % dipole - opened up
-charge      = [-1 +1 -1 +1];
-grouped     = [1 2; 3 4];
-coorInfo    = [ 12,  12, 12, 12;...  % radius 
-               -135,  135, -45,  +45;...   % alpha (xy coordinate)
-                90,   90,  90,  90];
-
+% dipole - opened up
+% charge      = [-1 +1 -1 +1];
+% grouped     = [1 2; 3 4];
+% coorInfo    = [ 12,  12, 12, 12;...  % radius 
+%                -135,  135, -45,  +45;...   % alpha (xy coordinate)
+%                 90,   90,  90,  90];
+            
+% dipole - opened up - ROTATED
+% charge      = [-1 +1 -1 +1];
+% grouped     = [1 2; 3 4];
+% coorInfo    = [ 12,  12, 12, 12;...  % radius 
+%                 90,   90,  90,  90;...   % alpha (xy coordinate)
+%                -135,  135, -45,  +45];
+% dim = 'z';
+           
 % tripole
-% charge      = [-1 +1 -1, -1 +1 -1];
+% sr           = 1;
+% sl           = 2;
+% charge      = [-1*sl +1*sl -1*sl, -1*sr +1*sr -1*sr];
 % grouped     = [1 2 3; 4 5 6];
 % coorInfo    = [ 12,  12, 12, 12, 12, 12;...  % radius 
 %                -175, -180,  -185,   5,   0  -5;...  % alpha (xy coordinate)
@@ -198,11 +208,22 @@ coorInfo    = [ 12,  12, 12, 12;...  % radius
 
 
 % tripole - opened up (Excellent!!)
-% charge      = [-1 +1 -1, -1 +1 -1];
-% grouped     = [1 2 3; 4 5 6];
-% coorInfo    = [ 12,  12, 12, 12, 12, 12;...  % radius 
-%                -171.5, -180,  171.5,   8.5,   0  -8.5;...  % alpha (xy coordinate)
-%                  90,   90,    90,  90,  90, 90];
+sr           = 1;
+sl           = 1;
+charge      = [-1*sl +1*sl -1*sl, -1*sr +1*sr -1*sr];
+grouped     = [1 2 3; 4 5 6];
+coorInfo    = [ 12,  12, 12, 12, 12, 12;...  % radius 
+               -171.5, -180,  171.5,   8.5,   0  -8.5;...  % alpha (xy coordinate)
+                 90,   90,    90,  90,  90, 90];
+             
+% tripole - opened up (Excellent!!) - rotated
+sr           = 1;
+sl           = 1;
+charge      = [-1*sl +1*sl -1*sl, -1*sr +1*sr -1*sr];
+grouped     = [1 2 3; 4 5 6];
+coorInfo    = [ 12,  12, 12, 12, 12, 12;...  % radius 
+               90,   90,    90,  90,  90, 90;...  % alpha (xy coordinate)
+               -171.5, -180,  171.5,   8.5,   0  -8.5];
              
 
 % pentapole (HD)

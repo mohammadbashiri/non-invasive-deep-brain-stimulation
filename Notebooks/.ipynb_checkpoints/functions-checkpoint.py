@@ -1,29 +1,26 @@
 import numpy as np
 from scipy.signal import chirp, spectrogram
 
-def gen_chirp(Chirp_init_freq=None, Chirp_init_time=0, Chirp_end_freq=None, 
-              Chirp_end_time=None, time_points=None, method='linear'):
+def gen_chirp(Chirp_init_freq=None, Chirp_init_time=0, Chirp_end_freq=None, Chirp_end_time=None, time_points=None, **kwargs):
 
-    '''
-    Add documentation
+    Chirp_signal = chirp(time_points, f0=Chirp_init_freq, f1=Chirp_end_freq, t1=Chirp_end_time, **kwargs)
     
-    '''
-    
-    Chirp_signal = chirp(time_points, f0=Chirp_init_freq, f1=Chirp_end_freq, t1=Chirp_end_time, method=method)
-    
-    # TODO: The calculation of the frequency list must happen depending on the chosen method
-    freq_ls = np.linspace(Chirp_init_freq, Chirp_end_freq, time_points.shape[0])
+    # getting the frequncy values
+    if len(kwargs) > 0:
+        
+        if kwargs['method'] == 'logarithmic':
+            freq_ls = Chirp_init_freq * (Chirp_end_freq/Chirp_init_freq)**(time_points/Chirp_end_time)
+        elif kwargs['method'] == 'linear':
+            freq_ls = np.linspace(Chirp_init_freq, Chirp_end_freq, time_points.shape[0])
+        
+    else:
+        freq_ls = np.linspace(Chirp_init_freq, Chirp_end_freq, time_points.shape[0])
     
     return (Chirp_signal, freq_ls) # TODO: add another output to display the frequencies
 
 
 
 def gen_sin(init_time=0, freq=None, phase=0, time_points=None):
-    
-    '''
-    Add documentation
-    
-    '''
     
     Sim_fs = int(1/(time_points[1] - time_points[0]))
     
@@ -41,11 +38,6 @@ def gen_sin(init_time=0, freq=None, phase=0, time_points=None):
     
     
 def gen_pulse(init_time=0, on_width=0., off_width=10., time_points=None):
-    
-    '''
-    Add documentation
-    
-    '''
     
     Sim_fs = int(1/(time_points[1] - time_points[0]))
     
@@ -68,11 +60,6 @@ def gen_pulse(init_time=0, on_width=0., off_width=10., time_points=None):
 
 
 def gen_slope(init_time=0, end_time=500, time_points=None):
-    
-    '''
-    Add documentation
-    
-    '''
     
     Sim_fs = int(1/(time_points[1] - time_points[0]))
     
