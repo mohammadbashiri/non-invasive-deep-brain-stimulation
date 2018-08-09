@@ -39,8 +39,8 @@ Tonset    = .05; % onset delay
 % define the currents (amplitude in Ampere)
 I1      = 5e-9 * stim_util.sin(t(1), base_freq, 0, t);
 I2      = 5e-9 * stim_util.sin(t(1), base_freq + 30, 0, t);
-
 I       = I1 + I2;
+
 I(1:Tonset*fs) = 0; % delay signal onset
 I_stim = I;
 
@@ -68,8 +68,8 @@ Tonset    = .05; % onset delay
 % define the currents (amplitude in Ampere)
 I1      = 5e-9 * stim_util.sin(t(1), base_freq, 0, t);
 I2      = 5e-9 * stim_util.sin(t(1), base_freq + 30, 0, t);
-
 I       = I1 + I2;
+
 I(1:Tonset*fs) = 0; % delay signal onset
 I_stim = I;
 
@@ -95,9 +95,7 @@ base_freq = 10; % Hz
 Tonset    = .05; % onset delay
 
 % define the currents (amplitude in Ampere)
-I1      = 5e-9 * stim_util.sin(t(1), base_freq, 0, t);
-
-I       = I1;
+I = 5e-9 * stim_util.sin(t(1), base_freq, 0, t);
 I(1:Tonset*fs) = 0; % delay signal onset
 I_stim = I;
 
@@ -125,8 +123,8 @@ Tonset    = .05; % onset delay
 % define the currents (amplitude in Ampere)
 I1      = 5e-9 * stim_util.sin(t(1), base_freq, 0, t);
 I2      = 5e-9 * stim_util.sin(t(1), base_freq + 10, 0, t);
-
 I       = I1 + I2;
+
 I(1:Tonset*fs) = 0; % delay signal onset
 I_stim = I;
 
@@ -180,8 +178,8 @@ Tonset    = .01; % onset delay
 I1         = .0015e-9 .* stim_util.chirp(t, base_freq+1, t(end), base_freq+1000, 'quadratic'); % chirp (ZAP
 I1         = I1 .* stim_util.slope(Tonset, 0.04, t); % apply a slope
 I2         = .0015e-9 * stim_util.sin(t(1), base_freq, 0, t);
-
 I = I1 + I2;
+
 I(1:Tonset*fs) = 0; % delay signal onset
 I_stim         = I;
 
