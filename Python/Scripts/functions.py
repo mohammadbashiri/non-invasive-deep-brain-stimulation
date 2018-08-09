@@ -1,7 +1,7 @@
 import numpy as np
 from scipy.signal import chirp, spectrogram
 
-def gen_chirp(Chirp_init_freq=None, Chirp_init_time=0, Chirp_end_freq=None, Chirp_end_time=None, time_points=None, **kwargs):
+def chirp(Chirp_init_freq=None, Chirp_init_time=0, Chirp_end_freq=None, Chirp_end_time=None, time_points=None, **kwargs):
 
     Chirp_signal = chirp(time_points, f0=Chirp_init_freq, f1=Chirp_end_freq, t1=Chirp_end_time, **kwargs)
     
@@ -20,7 +20,7 @@ def gen_chirp(Chirp_init_freq=None, Chirp_init_time=0, Chirp_end_freq=None, Chir
 
 
 
-def gen_sin(init_time=0, freq=None, phase=0, time_points=None):
+def sin(init_time=0, freq=None, phase=0, time_points=None):
     
     Sim_fs = int(1/(time_points[1] - time_points[0]))
     
@@ -37,7 +37,7 @@ def gen_sin(init_time=0, freq=None, phase=0, time_points=None):
     return sin_signal
     
     
-def gen_pulse(init_time=0, on_width=0., off_width=10., time_points=None):
+def pulse(init_time=0, on_width=0., off_width=10., time_points=None):
     
     Sim_fs = int(1/(time_points[1] - time_points[0]))
     
@@ -59,7 +59,7 @@ def gen_pulse(init_time=0, on_width=0., off_width=10., time_points=None):
     return pulse_signal
 
 
-def gen_slope(init_time=0, end_time=500, time_points=None):
+def slope(init_time=0, end_time=500, time_points=None):
     
     Sim_fs = int(1/(time_points[1] - time_points[0]))
     
