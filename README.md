@@ -12,7 +12,7 @@ This repository contains all the code used for simulation and creating the figur
 	Enter passphrase (empty for no passphrase): [Type a passphrase]<br>
 	Enter same passphrase again: [Type passphrase again]
 	
-2. go to /c/Users/you/.ssh/id_rsa. open the id_rsa.pub with notepad, and copy the whole thing.
+2. Go to /c/Users/you/.ssh/id_rsa. open the id_rsa.pub with notepad, and copy the whole thing.
 
 3. Go to your remote github repo > Settings > Deploy Keys. Press "Add deploy key". Choose a title for the key and paste 
 the copied ssh key in the key section
