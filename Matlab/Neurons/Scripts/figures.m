@@ -1,5 +1,3 @@
-addpath('../../highQualityFigure/lib');
-
 %% Figure from the original paper (sanity check) 
 % It shows that type II neuron elicites a signle spike when a pulse input
 % current is injected
@@ -23,13 +21,24 @@ Vm = VCN(-I_stim, neuron_type, fs);
 
 % Visualize
 figure;
-subplot(5,1,[1, 2]); plot(t, I_stim); ylim([min(I_stim) + min(I_stim)*0.1, max(I_stim) + max(I_stim)*0.1]);
-ylabel({'$I (A)$'},'Interpreter','latex');
-subplot(5,1,[3, 4, 5]); plot(t, Vm); %ylim([min(Vm) + min(Vm)*0.1, max(Vm) + max(Vm)*0.1]);
-xlabel({'$Time (s)$'},'Interpreter','latex');
-ylabel({'$Membrane voltage (V)$'},'Interpreter','latex');
-suptitle({['Type ', neuron_type, ' Model'], '(Phasic Neuron)'});
+plot(t, I_stim);
+opt.XLabel = 'Time (ms)'; % xlabel
+opt.YLabel = 'Current (A)'; %ylabel
+opt.XLim = [0, tend]; % set x axis limit
+opt.YLim = [min(I_stim) + min(I_stim)*0.1, max(I_stim) + max(I_stim)*0.1]; % set y axis limit
+% opt.FileName = 'plotAxisLimit.jpg'; % uncomment to save
+setPlotProp(opt);
 
+figure;
+plot(t, Vm);
+opt.XLabel = 'Time, t (ms)'; % xlabel
+opt.YLabel = 'membrane Voltage, V (V)'; %ylabel
+opt.XLim = [0, tend]; % set x axis limit
+opt.YLim = [min(Vm) + min(Vm)*0.1, max(Vm) + max(Vm)*0.1]; % set y axis limit
+% opt.FileName = 'plotAxisLimit.jpg'; % uncomment to save
+setPlotProp(opt);
+
+% suptitle({['Type ', neuron_type, ' Model'], '(Phasic Neuron)'});
 
 %% Figure 2C: response to TI stimulation at the superficial regions
 
@@ -52,12 +61,24 @@ Vm = VCN(-I_stim, neuron_type, fs);
 
 % Visualize
 figure;
-subplot(5,1,[1, 2]); plot(t, I_stim); ylim([min(I_stim) + min(I_stim)*0.1, max(I_stim) + max(I_stim)*0.1]);
-ylabel({'$I (A)$'},'Interpreter','latex');
-subplot(5,1,[3, 4, 5]); plot(t, Vm); %ylim([min(Vm) + min(Vm)*0.1, max(Vm) + max(Vm)*0.1]);
-xlabel({'$Time (s)$'},'Interpreter','latex');
-ylabel({'$Membrane voltage (V)$'},'Interpreter','latex');
-suptitle({['Type ', neuron_type, ' Model'], '(Phasic Neuron)'});
+plot(t, I_stim);
+opt.XLabel = 'Time (ms)'; % xlabel
+opt.YLabel = 'Current (A)'; %ylabel
+opt.XLim = [0, tend]; % set x axis limit
+opt.YLim = [min(I_stim) + min(I_stim)*0.1, max(I_stim) + max(I_stim)*0.1]; % set y axis limit
+% opt.FileName = 'plotAxisLimit.jpg'; % uncomment to save
+setPlotProp(opt);
+
+figure;
+plot(t, Vm);
+opt.XLabel = 'Time, t (ms)'; % xlabel
+opt.YLabel = 'membrane Voltage, V (V)'; %ylabel
+opt.XLim = [0, tend]; % set x axis limit
+opt.YLim = [min(Vm) + min(Vm)*0.1, max(Vm) + max(Vm)*0.1]; % set y axis limit
+% opt.FileName = 'plotAxisLimit.jpg'; % uncomment to save
+setPlotProp(opt);
+
+% suptitle({['Type ', neuron_type, ' Model'], '(Phasic Neuron)'});
 
 
 %% Figure 2D: response to TI stimulation at depth
@@ -81,12 +102,26 @@ Vm = VCN(-I_stim, neuron_type, fs);
 
 % Visualize
 figure;
-subplot(5,1,[1, 2]); plot(t, I_stim); ylim([min(I_stim) + min(I_stim)*0.1, max(I_stim) + max(I_stim)*0.1]);
-ylabel({'$I (A)$'},'Interpreter','latex');
-subplot(5,1,[3, 4, 5]); plot(t, Vm); %ylim([min(Vm) + min(Vm)*0.1, max(Vm) + max(Vm)*0.1]);
-xlabel({'$Time (s)$'},'Interpreter','latex');
-ylabel({'$Membrane voltage (V)$'},'Interpreter','latex');
-suptitle({['Type ', neuron_type, ' Model'], '(Phasic Neuron)'});
+% Visualize
+figure;
+plot(t, I_stim);
+opt.XLabel = 'Time (ms)'; % xlabel
+opt.YLabel = 'Current (A)'; %ylabel
+opt.XLim = [0, tend]; % set x axis limit
+opt.YLim = [min(I_stim) + min(I_stim)*0.1, max(I_stim) + max(I_stim)*0.1]; % set y axis limit
+% opt.FileName = 'plotAxisLimit.jpg'; % uncomment to save
+setPlotProp(opt);
+
+figure;
+plot(t, Vm);
+opt.XLabel = 'Time, t (ms)'; % xlabel
+opt.YLabel = 'membrane Voltage, V (V)'; %ylabel
+opt.XLim = [0, tend]; % set x axis limit
+opt.YLim = [min(Vm) + min(Vm)*0.1, max(Vm) + max(Vm)*0.1]; % set y axis limit
+% opt.FileName = 'plotAxisLimit.jpg'; % uncomment to save
+setPlotProp(opt);
+
+% suptitle({['Type ', neuron_type, ' Model'], '(Phasic Neuron)'});
 
 
 %% Figure 2E: response to direct 10 Hz stimulation
@@ -107,12 +142,24 @@ Vm = VCN(-I_stim, neuron_type, fs);
 
 % Visualize
 figure;
-subplot(5,1,[1, 2]); plot(t, I_stim); ylim([min(I_stim) + min(I_stim)*0.1, max(I_stim) + max(I_stim)*0.1]);
-ylabel({'$I (A)$'},'Interpreter','latex');
-subplot(5,1,[3, 4, 5]); plot(t, Vm); %ylim([min(Vm) + min(Vm)*0.1, max(Vm) + max(Vm)*0.1]);
-xlabel({'$Time (s)$'},'Interpreter','latex');
-ylabel({'$Membrane voltage (V)$'},'Interpreter','latex');
-suptitle({['Type ', neuron_type, ' Model'], '(Phasic Neuron)'});
+plot(t, I_stim);
+opt.XLabel = 'Time (ms)'; % xlabel
+opt.YLabel = 'Current (A)'; %ylabel
+opt.XLim = [0, tend]; % set x axis limit
+opt.YLim = [min(I_stim) + min(I_stim)*0.1, max(I_stim) + max(I_stim)*0.1]; % set y axis limit
+% opt.FileName = 'plotAxisLimit.jpg'; % uncomment to save
+setPlotProp(opt);
+
+figure;
+plot(t, Vm);
+opt.XLabel = 'Time, t (ms)'; % xlabel
+opt.YLabel = 'membrane Voltage, V (V)'; %ylabel
+opt.XLim = [0, tend]; % set x axis limit
+opt.YLim = [min(Vm) + min(Vm)*0.1, max(Vm) + max(Vm)*0.1]; % set y axis limit
+% opt.FileName = 'plotAxisLimit.jpg'; % uncomment to save
+setPlotProp(opt);
+
+% suptitle({['Type ', neuron_type, ' Model'], '(Phasic Neuron)'});
 
 
 %% Figure 2E: response to AM 10 Hz stimulation
@@ -136,12 +183,24 @@ Vm = VCN(-I_stim, neuron_type, fs);
 
 % Visualize
 figure;
-subplot(5,1,[1, 2]); plot(t, I_stim); ylim([min(I_stim) + min(I_stim)*0.1, max(I_stim) + max(I_stim)*0.1]);
-ylabel({'$I (A)$'},'Interpreter','latex');
-subplot(5,1,[3, 4, 5]); plot(t, Vm); %ylim([min(Vm) + min(Vm)*0.1, max(Vm) + max(Vm)*0.1]);
-xlabel({'$Time (s)$'},'Interpreter','latex');
-ylabel({'$Membrane voltage (V)$'},'Interpreter','latex');
-suptitle({['Type ', neuron_type, ' Model'], '(Phasic Neuron)'});
+plot(t, I_stim);
+opt.XLabel = 'Time (ms)'; % xlabel
+opt.YLabel = 'Current (A)'; %ylabel
+opt.XLim = [0, tend]; % set x axis limit
+opt.YLim = [min(I_stim) + min(I_stim)*0.1, max(I_stim) + max(I_stim)*0.1]; % set y axis limit
+% opt.FileName = 'plotAxisLimit.jpg'; % uncomment to save
+setPlotProp(opt);
+
+figure;
+plot(t, Vm);
+opt.XLabel = 'Time, t (ms)'; % xlabel
+opt.YLabel = 'membrane Voltage, V (V)'; %ylabel
+opt.XLim = [0, tend]; % set x axis limit
+opt.YLim = [min(Vm) + min(Vm)*0.1, max(Vm) + max(Vm)*0.1]; % set y axis limit
+% opt.FileName = 'plotAxisLimit.jpg'; % uncomment to save
+setPlotProp(opt);
+
+% suptitle({['Type ', neuron_type, ' Model'], '(Phasic Neuron)'});
 
 
 %% Figure 3E: respons to ZAP input
@@ -162,12 +221,24 @@ Vm = VCN(-I_stim, neuron_type, fs);
 
 % Visualize
 figure;
-subplot(5,1,[1, 2]); plot(t, I_stim); ylim([min(I_stim) + min(I_stim)*0.1, max(I_stim) + max(I_stim)*0.1]);
-ylabel({'$I (A)$'},'Interpreter','latex');
-subplot(5,1,[3, 4, 5]); plot(t, Vm); %ylim([min(Vm) + min(Vm)*0.1, max(Vm) + max(Vm)*0.1]);
-xlabel({'$Time (s)$'},'Interpreter','latex');
-ylabel({'$Membrane voltage (V)$'},'Interpreter','latex');
-suptitle({['Type ', neuron_type, ' Model'], '(Phasic Neuron)'});
+plot(t, I_stim);
+opt.XLabel = 'Time (ms)'; % xlabel
+opt.YLabel = 'Current (A)'; %ylabel
+opt.XLim = [0, tend]; % set x axis limit
+opt.YLim = [min(I_stim) + min(I_stim)*0.1, max(I_stim) + max(I_stim)*0.1]; % set y axis limit
+% opt.FileName = 'plotAxisLimit.jpg'; % uncomment to save
+setPlotProp(opt);
+
+figure;
+plot(t, Vm);
+opt.XLabel = 'Time, t (ms)'; % xlabel
+opt.YLabel = 'membrane Voltage, V (V)'; %ylabel
+opt.XLim = [0, tend]; % set x axis limit
+opt.YLim = [min(Vm) + min(Vm)*0.1, max(Vm) + max(Vm)*0.1]; % set y axis limit
+% opt.FileName = 'plotAxisLimit.jpg'; % uncomment to save
+setPlotProp(opt);
+
+% suptitle({['Type ', neuron_type, ' Model'], '(Phasic Neuron)'});
 
 
 %% Figure 3F: response to AMZAP input
@@ -190,11 +261,24 @@ neuron_type = 'II';
 Vm = VCN(-I_stim, neuron_type, fs);
 
 % Visualize
+% Visualize
 figure;
-subplot(5,1,[1, 2]); plot(t, I_stim); ylim([min(I_stim) + min(I_stim)*0.1, max(I_stim) + max(I_stim)*0.1]);
-ylabel({'$I (A)$'},'Interpreter','latex');
-subplot(5,1,[3, 4, 5]); plot(t, Vm); %ylim([min(Vm) + min(Vm)*0.1, max(Vm) + max(Vm)*0.1]);
-xlabel({'$Time (s)$'},'Interpreter','latex');
-ylabel({'$Membrane voltage (V)$'},'Interpreter','latex');
-suptitle({['Type ', neuron_type, ' Model'], '(Phasic Neuron)'});
+plot(t, I_stim);
+opt.XLabel = 'Time (ms)'; % xlabel
+opt.YLabel = 'Current (A)'; %ylabel
+opt.XLim = [0, tend]; % set x axis limit
+opt.YLim = [min(I_stim) + min(I_stim)*0.1, max(I_stim) + max(I_stim)*0.1]; % set y axis limit
+% opt.FileName = 'plotAxisLimit.jpg'; % uncomment to save
+setPlotProp(opt);
+
+figure;
+plot(t, Vm);
+opt.XLabel = 'Time, t (ms)'; % xlabel
+opt.YLabel = 'membrane Voltage, V (V)'; %ylabel
+opt.XLim = [0, tend]; % set x axis limit
+opt.YLim = [min(Vm) + min(Vm)*0.1, max(Vm) + max(Vm)*0.1]; % set y axis limit
+% opt.FileName = 'plotAxisLimit.jpg'; % uncomment to save
+setPlotProp(opt);
+
+% suptitle({['Type ', neuron_type, ' Model'], '(Phasic Neuron)'});
 
