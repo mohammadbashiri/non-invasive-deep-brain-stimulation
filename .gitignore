@@ -1,0 +1,16 @@
+vrlatency.egg-info/
+Measurements/
+build/
+dist/
+docs/_build
+docs/_static
+docs/_template
+docs_guide.txt
+*.pyc
+*.pyd
+*~
+.idea
+.pytest_cache
+.cache
+*.egg-info
+.eggs
