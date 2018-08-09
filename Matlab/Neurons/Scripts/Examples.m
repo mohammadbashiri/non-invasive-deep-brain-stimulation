@@ -33,17 +33,20 @@ I       = I1 + I2 + I3;
 
 I(1:Tonset*fs) = 0; % delay signal onset
 
+% without manipulation
+% I_stim  = I;
+
 % you can also have variations of chirp signal
 % I_stim         = max(I) .* stim_util.chirp(t, 10, t(end), 1000, 'quadratic'); % chirp (ZAP)
 % I_stim         = max(I) .* stim_util.genChirpAM(t, fc_start, tend, fc_end, fr); % AM chirp (AMZAP)
 
 % manipulate the stimulation signal
 % I_stim         = I .* stim_util.slope(0.05, 0.15, t); % apply a slope
-% I_stim         = I .* stim_util.pulse(0.05, .005, .01, t); % apply pulse
+I_stim         = I .* stim_util.pulse(0.05, .1, .04, t); % apply pulse
 
 %% Specify VCN neuron type and run the simulation
 neuron_type = 'II';
-Vm = VCN(I_stim, neuron_type, fs); 
+Vm = VCN(-I_stim, neuron_type, fs); 
 
 %% Visualize
 figure;
