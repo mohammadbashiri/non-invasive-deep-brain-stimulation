@@ -61,7 +61,7 @@ end
     
 
 % initialization
-Tonset = 50e-3;      % ms delay onset
+Tonset = 10e-3;      % ms delay onset
 t      = (1:T*f_s)/f_s;
 
 % initialize stimulaiton current

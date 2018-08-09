@@ -208,13 +208,13 @@ dim = '-';
 
 
 % tripole - opened up (Excellent!!)
-sr           = 1;
-sl           = 1;
-charge      = [-1*sl +1*sl -1*sl, -1*sr +1*sr -1*sr];
-grouped     = [1 2 3; 4 5 6];
-coorInfo    = [ 12,  12, 12, 12, 12, 12;...  % radius 
-               -171.5, -180,  171.5,   8.5,   0  -8.5;...  % alpha (xy coordinate)
-                 90,   90,    90,  90,  90, 90];
+% sr           = 1;
+% sl           = 1;
+% charge      = [-1*sl +1*sl -1*sl, -1*sr +1*sr -1*sr];
+% grouped     = [1 2 3; 4 5 6];
+% coorInfo    = [ 12,  12, 12, 12, 12, 12;...  % radius 
+%                -171.5, -180,  171.5,   8.5,   0  -8.5;...  % alpha (xy coordinate)
+%                  90,   90,    90,  90,  90, 90];
              
 % tripole - opened up (Excellent!!) - rotated
 sr           = 1;

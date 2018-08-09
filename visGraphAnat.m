@@ -142,7 +142,7 @@ line = 0;
 
 triXY = delaunay(x(z==zUniq(sliceNoZ)),y(z==zUniq(sliceNoZ)));
 
-figure; %subplot(242); 
+subplot(242); 
 trisurf(triXY, x(z==zUniq(sliceNoZ)), y(z==zUniq(sliceNoZ)), eFieldAM_amp(z==zUniq(sliceNoZ)).*0, eFieldAM_amp(z==zUniq(sliceNoZ))); hold on;
 plot([min(x(z==zUniq(sliceNoZ) & y==yUniq(sliceNoY))) max(x(z==zUniq(sliceNoZ) & y==yUniq(sliceNoY)))], [yUniq(sliceNoY) yUniq(sliceNoY)], 'r:', 'LineWidth', 1);
 plot([xUniq(sliceNoX) xUniq(sliceNoX)], [min(y(z==zUniq(sliceNoZ) & x==xUniq(sliceNoX))) max(y(z==zUniq(sliceNoZ) & x==xUniq(sliceNoX)))], 'r:', 'LineWidth', 1);
@@ -151,29 +151,28 @@ plotCoor( coor, col );
 xlim([-13, 13]); ylim([-13, 13]);
 shading interp; view(0,90); h = colorbar; ylabel(h, {'Modulation Amplitude'}); %axis vis3d
 h.Location = 'northoutside'; h.AxisLocation = 'out'; 
-set(findobj(gcf, 'type','axes'), 'Visible','off');
+% set(findobj(gcf, 'type','axes'), 'Visible','off');
 
-figure;
 subplot(241); 
 trisurf(triXY, x(z==zUniq(sliceNoZ)), y(z==zUniq(sliceNoZ)), eFieldAM_amp(z==zUniq(sliceNoZ)).*0, eFieldComb_amp(1, z==zUniq(sliceNoZ))); hold on;
 plot([min(x(z==zUniq(sliceNoZ) & y==yUniq(sliceNoY))) max(x(z==zUniq(sliceNoZ) & y==yUniq(sliceNoY)))], [yUniq(sliceNoY) yUniq(sliceNoY)], 'r:', 'LineWidth', 1);
 plot([xUniq(sliceNoX) xUniq(sliceNoX)], [min(y(z==zUniq(sliceNoZ) & x==xUniq(sliceNoX))) max(y(z==zUniq(sliceNoZ) & x==xUniq(sliceNoX)))], 'r:', 'LineWidth', 1);
+axis equal tight;
 plotCoor( coor, col );
-xlim([-12, 12]); ylim([-12, 12]);
-% axis tight % equal 
-shading interp; view(0,90); h = colorbar; ylabel(h, {'Left Electrode E-field'}); %axis vis3d
-h.Location = 'northoutside'; h.AxisLocation = 'out';
+xlim([-13, 13]); ylim([-13, 13]);
+shading interp; view(0,90); h = colorbar; ylabel(h, {'Modulation Amplitude'}); %axis vis3d
+h.Location = 'northoutside'; h.AxisLocation = 'out'; 
 
 
 subplot(243); 
 trisurf(triXY, x(z==zUniq(sliceNoZ)), y(z==zUniq(sliceNoZ)), eFieldAM_amp(z==zUniq(sliceNoZ)).*0, eFieldComb_amp(2, z==zUniq(sliceNoZ))); hold on;
 plot([min(x(z==zUniq(sliceNoZ) & y==yUniq(sliceNoY))) max(x(z==zUniq(sliceNoZ) & y==yUniq(sliceNoY)))], [yUniq(sliceNoY) yUniq(sliceNoY)], 'r:', 'LineWidth', 1);
 plot([xUniq(sliceNoX) xUniq(sliceNoX)], [min(y(z==zUniq(sliceNoZ) & x==xUniq(sliceNoX))) max(y(z==zUniq(sliceNoZ) & x==xUniq(sliceNoX)))], 'r:', 'LineWidth', 1);
+axis equal tight;
 plotCoor( coor, col );
-xlim([-12, 12]); ylim([-12, 12]);
-% axis tight % equal 
-shading interp; view(0,90); h = colorbar; ylabel(h, {'Right Electrode E-field'}); %axis vis3d
-h.Location = 'northoutside'; h.AxisLocation = 'out';
+xlim([-13, 13]); ylim([-13, 13]);
+shading interp; view(0,90); h = colorbar; ylabel(h, {'Modulation Amplitude'}); %axis vis3d
+h.Location = 'northoutside'; h.AxisLocation = 'out'; 
 
 subplot(2,4,[5,6,7]); hold on;
 plot(x(z==0 & y==line), eFieldAM_amp(z==0 & y==line), 'lineWidth', 5);

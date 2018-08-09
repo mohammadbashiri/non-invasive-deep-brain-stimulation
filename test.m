@@ -110,7 +110,7 @@ MHH( I_stim1, freq1, I_stim2, freq2, I_stim3, freq3, tend, dt, slope );
 clear all
 
 % initializing simulation param
-tend = 500e-3; % 2sec
+tend = 200e-3; % 2sec
 fs   = 1e6;
 
 neuron_type = 'II';
@@ -118,10 +118,10 @@ slope = 1; %.00005;
 stim_freq = 3000;
 
 % initialize stimulaiton current
-I_stim1 = 1.25;    % nA 
+I_stim1 = 5;    % nA 
 freq1   = stim_freq;    % Hz
 
-I_stim2 = 15.0;     % nA 
+I_stim2 = 5;     % nA 
 freq2   = stim_freq + 30;  % Hz
 
 I_stim3 = 0;     % nA 
