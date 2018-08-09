@@ -1,3 +1,5 @@
+addpath('../../highQualityFigure/lib');
+
 %% Figure from the original paper (sanity check) 
 % It shows that type II neuron elicites a signle spike when a pulse input
 % current is injected
