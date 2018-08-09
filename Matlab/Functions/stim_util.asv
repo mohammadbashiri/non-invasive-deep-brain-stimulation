@@ -37,9 +37,9 @@ function [ pulse_signal ] = pulse( init_time, on_width, off_width, time_points )
     
     end_time = init_time + repeat * one_pulse_time;
     
-    on_off_signal = repmat(on_off_signal, 1, repeat);
+    on_off_signal = repmat(on_off_signal1, );
     
-    pulse_signal(init_time*Sim_fs:end_time*Sim_fs-1) = on_off_signal;
+    pulse_signal(int(init_time*Sim_fs):int(end_time*Sim_fs)) = on_off_signal;
 
 end
 

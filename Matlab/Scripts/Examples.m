@@ -33,11 +33,13 @@ I       = I1 + I2 + I3;
 
 % manipulate the stimulation signal
 I(1:Tonset*fs) = 0; % delay signal onset
-I_stim         = I .* stim_util.slope(0.05, 0.15, t);
+% I_stim         = I .* stim_util.slope(0.05, 0.15, t); % apply a slope
+% I_stim         = max(I) .* stim_util.chirp(t, 10, t(end), 1000, 'quadratic'); % apply a chirp
+% I_stim         = I .* stim_util.pulse(0.05, .005, .01, t); % apply pulse
 
 %% Specify VCN neuron type and run the simulation
 neuron_type = 'II';
-Vm = VCN(I_stim, neuron_type, fs);
+Vm = VCN(I_stim, neuron_type, fs); 
 
 %% Visualize
 figure;
