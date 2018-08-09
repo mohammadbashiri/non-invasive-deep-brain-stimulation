@@ -25,3 +25,8 @@ class VCN(object):
 	"""
 	def __init__(self):
 		raise NotImplementedError
+
+class SimpleModel(object):
+	"""Simple Model from Izhikevich"""
+	def __init__(self):
+		raise NotImplementedError
