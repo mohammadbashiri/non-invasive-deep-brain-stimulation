@@ -2,9 +2,12 @@ from abc import abstractmethod
 import numpy as np
 
 class BaseNeuron(object):
-    def __init__(self, params):
-        for key, val in params.items():
+    def __init__(self, const_params, tracked_params, time_points):
+        for key, val in const_params.items():
             setattr(self, key, val)
+
+        for tracked_param in tracked_params:
+        	setattr(self, tracked_param, np.zeros(time_points.shape))
     
     @property
     def params(self):
@@ -31,8 +34,9 @@ class HH(object):
 class MHH(BaseNeuron):
 	"""Mammalian Hodgkin and Huxley neuron model"""
     
-	def __init__(self, params):
-		super(self.__class__, self).__init__(params)
+	def __init__(self, const_params, tracked_params, time_points):
+		super(self.__class__, self).__init__(const_params, tracked_params, time_points)
+		self.u[0] = self.Er
         
 	def update(self, i, Sim_dt):
 	    """Set of differential equations needed to run the simulation"""
