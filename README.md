@@ -10,6 +10,8 @@ codes available in this repo, one can visualize the distribution of electric fie
 a spherical head model. Furthermore, using the computed electric field distribution, we 
 can also see the response of neurons at any point in the conductive medium (head model).
 
+![model_concept](https://github.com/mohammadbashiri/NonInvasiveDBS/blob/master/Figures/Head_model_Concept.png)
+
 Given that you have an E-field distribution from FE analysis of any arbitrary head model, 
 which was also part of this project (but not covered here), a different script could be 
 used to visualize the distribution.
