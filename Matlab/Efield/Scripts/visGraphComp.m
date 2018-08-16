@@ -14,16 +14,6 @@ close all
 % tic
 sq = @squeeze;
 
-%% Generate spherical grid
-
-%% Compute the coordinates, based on given information
-
-%% plot the eletrodes relative to grid
-
-%% Compute the electric field
-
-%% combine the electric fields
-
 %% plot the eField in 3D
 
 eFieldComb = zeros(3, numel(VectorX_left), 2); % (coordinate x datapoints x electrode group)
