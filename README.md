@@ -18,7 +18,7 @@ used to visualize the distribution.
 
 A a summary, the main focus of this repository is two-fold:
 - Visualization of E-field distribution either generated from FEA or an analytical solution
-- Testing the response of different neuron models at different location within the E-field 
+- Testing the response of different neuron models at different locations within the E-field 
 distribution
 
 
@@ -34,7 +34,12 @@ following:
 
 ## Neuron response
 
+Once we hae an E-field distribution, we probably want to see how would a neuron respond to 
+such electric field at different locations (after all that is the whole point - stimulating 
+neurons). Let us see the input and response of a neuron that is located at the center of 
+the distribution shown above.
 
+![neuron_response](https://github.com/mohammadbashiri/NonInvasiveDBS/blob/master/Figures/Neuron_response.png)
 
 ### You see a bug?
 
