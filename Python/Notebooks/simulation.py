@@ -14,7 +14,7 @@ class Simulation(object):
 
     def run(self):
     	"""Runs the simulation given a neuron mdoel and stimulation signal"""
-    	if self.neuron and self.stim:
+    	if self.neuron and self.stim.any():
 	     	for i in range(self.stim.shape[0]-1):
     	 		self.neuron.update(self.stim[i], i, self.dt)
 
