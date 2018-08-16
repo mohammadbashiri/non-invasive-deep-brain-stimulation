@@ -19,10 +19,26 @@ class BaseNeuron(object):
     def update(self, i, Sim_dt):
         pass
     
-class AdExpIF(object):
+class AdExpIF(BaseNeuron):
 	"""Adaptive Exponential Integrate and Fire neuron model"""
-	def __init__(self):
-		raise NotImplementedError
+	def __init__(self, const_params, tracked_params, time_points):
+		super(self.__class__, self).__init__(const_params, tracked_params, time_points)
+		self.v[0] = self.EL
+
+	def update(self, I, i, Sim_dt):
+		f = -self.gL * (self.v[i] - self.EL) + self.gL * self.dT * np.exp((self.v[i] - self.VT)/self.dT)
+		dvdt = (f - self.w[i] + I) / self.C
+		self.v[i+1] = self.v[i] + dvdt  * Sim_dt
+		
+		dwdt = (self.a * (self.v[i] - self.EL) - self.w[i]) / self.tauw
+		self.w[i+1] = self.w[i] + dwdt * Sim_dt
+
+		if self.v[i+1] > self.vpeak:    
+			self.v[i] = self.vpeak
+			self.v[i+1] = self.EL        # phasic spiking and post-inhibitory rebound
+			# v(i+1) = VT + 5  # tonic bursting
+			# v(i+1) = VT + 4  # phasic bursting
+			self.w[i+1] = self.w[i+1] + self.b
 
 
 class HH(object):
