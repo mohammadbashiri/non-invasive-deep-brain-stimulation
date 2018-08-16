@@ -54,7 +54,7 @@ class MHH(BaseNeuron):
 		super(self.__class__, self).__init__(const_params, tracked_params, time_points)
 		self.u[0] = self.Er
         
-	def update(self, i, Sim_dt):
+	def update(self, I, i, Sim_dt):
 	    """Set of differential equations needed to run the simulation"""
 	    aM = 11.3/expe((-53-self.u[i])/6)
 	    bM = 37.4/expe((57+self.u[i])/9)
@@ -87,6 +87,15 @@ class MHH(BaseNeuron):
 	    self.IK[i] = self.gK * (self.n[i]**3) * (self.EK-self.u[i])
 	    self.IA[i] = self.gA * (self.a[i]**4) * self.b[i] * (self.EK-self.u[i])
 	    self.IL = self.gL * (self.EL-self.u[i])
+
+	    # In case you want to block some currents
+        #     self.I[i] = 0
+        #     self.INA[i] = 0  # contributing to the integration
+        #     self.IK[i] = 0  # not sure what is contributing to!
+        #     self.IA[i] = 0  # contributes to stability and bringing down the membrane potential (so integration as well)
+        
+	    dudt = (self.INA[i] + self.IK[i] + self.IA[i] + self.IL + I) / self.C
+	    self.u[i+1] = self.u[i] + Sim_dt * dudt
 
         
 class VCN(object):

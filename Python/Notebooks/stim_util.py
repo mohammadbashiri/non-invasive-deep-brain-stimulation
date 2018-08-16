@@ -1,20 +1,19 @@
 import numpy as np
 from scipy.signal import chirp, spectrogram
 
-def gen_chirp(Chirp_init_freq=None, Chirp_init_time=0, Chirp_end_freq=None, Chirp_end_time=None, time_points=None, **kwargs):
+def gen_chirp(init_freq=None, init_time=0, end_freq=None, end_time=None, time_points=None, **kwargs):
 
-    Chirp_signal = chirp(time_points, f0=Chirp_init_freq, f1=Chirp_end_freq, t1=Chirp_end_time, **kwargs)
+    Chirp_signal = chirp(time_points, f0=init_freq, f1=end_freq, t1=end_time, **kwargs)
     
     # getting the frequncy values
     if len(kwargs) > 0:
-        
         if kwargs['method'] == 'logarithmic':
-            freq_ls = Chirp_init_freq * (Chirp_end_freq/Chirp_init_freq)**(time_points/Chirp_end_time)
+            freq_ls = init_freq * (end_freq/init_freq)**(time_points/end_time)
         elif kwargs['method'] == 'linear':
-            freq_ls = np.linspace(Chirp_init_freq, Chirp_end_freq, time_points.shape[0])
+            freq_ls = np.linspace(init_freq, end_freq, time_points.shape[0])
         
     else:
-        freq_ls = np.linspace(Chirp_init_freq, Chirp_end_freq, time_points.shape[0])
+        freq_ls = np.linspace(init_freq, end_freq, time_points.shape[0])
     
     return (Chirp_signal, freq_ls) # TODO: add another output to display the frequencies
 
