@@ -26,7 +26,11 @@ distribution
 
 In this project, I used a spherical head model, to keep things simple. The computation and 
 visualization of the E-field is done in Matlab (so look into the Matlab folder if you are 
-interested).
+interested). Fir this purpose, you can choose the electrode configuration you would like to 
+see the distribution for, and run the code. An example of the output might look like the 
+following:
+
+![e_field](https://github.com/mohammadbashiri/NonInvasiveDBS/blob/master/Figures/E-field_example.png)
 
 ## Neuron response
 
