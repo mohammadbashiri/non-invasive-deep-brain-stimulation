@@ -6,15 +6,15 @@ This repository contains all the code used for simulation of non-invasive Deep B
 
 The project is inspired by a paper published on June 2017 [1], which proposed a new 
 method for Non-invasive DBS via two (or more) temporally interfering signals. Using the 
-codes available in this repo, one can visualize the distribution of electric fields in 
+codes available in this repo, one can visualize the distribution of electric fields (E-field) in 
 a spherical head model. Furthermore, using the computed electric field distribution, we 
 can also see the response of neurons at any point in the conductive medium (head model).
 
 ![model_concept](https://github.com/mohammadbashiri/non-invasive-deep-brain-stimulation/blob/master/Figures/Head_model_Concept.png)
 
-Given that you have an E-field distribution from FE analysis of any arbitrary head model, 
-which was also part of this project (but not covered here), a different script could be 
-used to visualize the distribution.
+Given that you have an E-field distribution from finite-element analysis (FEA) of any arbitrary head model, 
+which was also part of this project (but not covered here), a different script could be used to visualize 
+the distribution.
 
 A a summary, the main focus of this repository is two-fold:
 - Visualization of E-field distribution either generated from FEA or an analytical solution
