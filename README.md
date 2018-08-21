@@ -41,6 +41,17 @@ the distribution shown above.
 
 ![neuron_response](https://github.com/mohammadbashiri/non-invasive-deep-brain-stimulation/blob/master/Figures/Neuron_response.png)
 
+## Neuron models
+
+Here I have included several neuron models, which enables me to test the method for different 
+neruons models (essentially for different membrane characteristics). Neuron models included in 
+this repo are:
+
+* Hodgkin Huxley (tuned to mammals) - implement in Matlab and Python
+* Adaptive Exponential Integrate & Fire -  implemented in Python
+* Auditory brainstem - implemented in Matlab
+* Izhikevich - implemented in Python
+
 ### You see a bug?
 
 If you see anything wrong with the code, or you would like to suggest a change, I would be more 
