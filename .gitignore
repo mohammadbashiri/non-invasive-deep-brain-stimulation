@@ -1,5 +1,9 @@
 .ipynb_checkpoints/
 Matlab/highQualityFigures
+Python/OtherNotebooks
+Matlab/Neurons/Scripts/figures.m
+Matlab/Neurons/Scripts/test.m
+Matlab/Neurons/Scripts/VCN_Fig2.m
 *.pyc
 *.pyd
 *~
