@@ -65,11 +65,3 @@ email me at mohammadbashiri93@gmail.com, with the description of the problem you
 ### Reference
 [1] N. Grossman et al., “Noninvasive Deep Brain Stimulation via Temporally Interfering Electric Fields,” Cell, vol. 169, no. 6,
 p. 1029–1041.e16, 2017.
-
----
-
-TO-DOs:
-
-* Examples for stimulation signal
-* Examples for how use the stimulation signal to stimulate the neuron
-* Remove unnecessary (important locally) stuff from the repo - add to .gitignore
