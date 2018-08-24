@@ -35,9 +35,7 @@ class AdExpIF(BaseNeuron):
 
 		if self.v[i+1] > self.vpeak:    
 			self.v[i] = self.vpeak
-			self.v[i+1] = self.EL        # phasic spiking and post-inhibitory rebound
-			# v(i+1) = VT + 5  # tonic bursting
-			# v(i+1) = VT + 4  # phasic bursting
+			self.v[i+1] = self.EL
 			self.w[i+1] = self.w[i+1] + self.b
 
 
