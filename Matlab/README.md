@@ -83,10 +83,32 @@ In this part, I will walk you through the procedure of  visualizing neuron respo
 you are already in the project directory, in Matlab. From here, go to Matlab > Neurons, and select 
 all the folders, right click > Add to Path > Selected Folders. Now we are all set!
 
+In general, we need to do the following steps:
+* Define simulation parameters (period, sampling frequency, etc.)
+* Create a stimulation signal
+* Run the simulation with the neuron model and stimulation signal
+* Visualize the result
+
+Here is an example:
+
 ```matlab
 %% Initializing simulation parameters
 
-tend = 0.2; % second
+tend = 0.5; % second
 fs   = 1e6; % Hz
 t    = (1:tend*fs)/fs; % second
+
+% Stimulation signals
+stim_util = stim_util();
+I_stim         = .3e-9 * stim_util.pulse(0.05, .1, .04, t);
+
+% Specify VCN neuron type and run the simulation
+neuron_type = 'II';
+Vm = VCN(-I_stim, neuron_type, fs);
 ```
+
+And here is the stimulation signal, as well as the membrane potential of the neuron:
+
+![vcn_input](https://github.com/mohammadbashiri/non-invasive-deep-brain-stimulation/blob/master/Figures/vcn_input.png)
+
+![vcn_response](https://github.com/mohammadbashiri/non-invasive-deep-brain-stimulation/blob/master/Figures/vcn_response.png)
