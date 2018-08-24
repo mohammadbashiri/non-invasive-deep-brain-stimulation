@@ -9,8 +9,18 @@ make sure you have the done the following before your proceed:
 * Clone the github repo at github.com/mohammadbashiri/non-invasive-deep-brain-stimulation
 * Open Matlab and go to the project directory
 
+---
+
 ### E-field distribution
 
+Codes related to E-field distribution, let you do the following:
+* Create two sets of electrodes (each set can have as many electrodes)
+* Position each electrode individually in 3D space
+* Chose different stimulation amplitudes for each electrode individually
+
+Here is an exmaple:
+
+---
 
 ### Available stimulation signals
 
@@ -65,6 +75,7 @@ xlabel('Time'); ylabel('Amplitude');
 
 ![slope-sin-chirp](https://github.com/mohammadbashiri/non-invasive-deep-brain-stimulation/blob/master/Figures/slope-sin-chirp.png)
 
+---
 
 ### Neuron model response
 
@@ -72,3 +83,10 @@ In this part, I will walk you through the procedure of  visualizing neuron respo
 you are already in the project directory, in Matlab. From here, go to Matlab > Neurons, and select 
 all the folders, right click > Add to Path > Selected Folders. Now we are all set!
 
+```matlab
+%% Initializing simulation parameters
+
+tend = 0.2; % second
+fs   = 1e6; % Hz
+t    = (1:tend*fs)/fs; % second
+```
