@@ -25,7 +25,8 @@ versus instantaneous frequency.
 * **slope**: Generates a ramped signal. It is handy when applied on other signals.
 
 One can generate most of the common signal patterns using these four functions. 
-all the stimulation functions are stored in a structure (called `stim_util`). Hence, to use the 
+all the stimulation functions are stored in a structure which is return as a result of a function call 
+(`stim_util()`). Hence, to use the 
 functions, one needs to call the function which returns this structure. As an example, running 
 the following code:
 
@@ -48,6 +49,17 @@ Would let you create the following patterns.
 ![chirp](https://github.com/mohammadbashiri/non-invasive-deep-brain-stimulation/blob/master/Figures/chirp.png)
 
 ![slope](https://github.com/mohammadbashiri/non-invasive-deep-brain-stimulation/blob/master/Figures/slope.png)
+
+Here are two examples of what could be done by combining some of the above patterns.
+To get the following patterns, simply run:
+
+```
+figure; plot(t, 2 * stim_sin + stim_chirp , 'k', 'LineWidth', 3); 
+xlabel('Time'); ylabel('Amplitude');
+
+figure; plot(t,  2 * stim_slope .* (stim_sin + stim_chirp) , 'k', 'LineWidth', 3); 
+xlabel('Time'); ylabel('Amplitude');
+```
 
 ![sin-chirp](https://github.com/mohammadbashiri/non-invasive-deep-brain-stimulation/blob/master/Figures/sin-chirp.png)
 
