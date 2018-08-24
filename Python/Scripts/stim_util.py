@@ -15,7 +15,7 @@ def gen_chirp(init_freq=None, init_time=0, end_freq=None, end_time=None, time_po
     else:
         freq_ls = np.linspace(init_freq, end_freq, time_points.shape[0])
     
-    return (Chirp_signal, freq_ls) # TODO: add another output to display the frequencies
+    return (Chirp_signal, freq_ls)
 
 
 

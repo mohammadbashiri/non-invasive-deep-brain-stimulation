@@ -4,14 +4,28 @@ function [ util ] = stim_util()
 % Author: Mohammad Bashiri
 %
 
-util.chirp = @chirp;  % using Matlab built in chirp function
-util.sin = @mysin;
+util.chirp = @gen_chirp;  % using Matlab built in chirp function
+util.sin = @gen_sin;
 util.pulse = @pulse;
 util.slope = @slope;
 
 end
 
-function [ sin_signal ] = mysin(init_time, freq, phase, time_points)
+function [Chirp_signal, freq_ls] = gen_chirp(time_points, init_freq, end_time, end_freq, method)
+
+    Chirp_signal = chirp(time_points, init_freq, end_time, end_freq, method);
+    
+    % getting the frequncy values
+    if strcmp(method, 'quadratic')
+        % I am not sure if this is the correct formulation, have to check matlab doc
+        freq_ls = init_freq * (end_freq/init_freq) .^ (time_points/end_time);
+
+    elseif strcmp(method, 'linear')
+        freq_ls = linspace(init_freq, end_freq, size(time_points, 1));
+    end
+end
+
+function [ sin_signal ] = gen_sin(init_time, freq, phase, time_points)
     Sim_fs = 1/(time_points(2) - time_points(1));
     sin_signal = zeros(size(time_points));
     
