@@ -53,7 +53,7 @@ Would let you create the following patterns.
 Here are two examples of what could be done by combining some of the above patterns.
 To get the following patterns, simply run:
 
-```
+```matlab
 figure; plot(t, 2 * stim_sin + stim_chirp , 'k', 'LineWidth', 3); 
 xlabel('Time'); ylabel('Amplitude');
 
