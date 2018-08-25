@@ -85,7 +85,9 @@ all the folders, right click > Add to Path > Selected Folders. Now we are all se
 In general, we need to do the following steps:
 * Define simulation parameters (period, sampling frequency, etc.)
 * Create a stimulation signal
-* Run the simulation with the neuron model and stimulation signal
+* Define your neuron model
+* Add the neuron model and the stimulation signal to your simulation object
+* Run the simulation
 * Visualize the result
 
 Here is an example:
