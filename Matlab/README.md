@@ -109,6 +109,12 @@ Vm = VCN(-I_stim, neuron_type, fs);
 
 And here is the stimulation signal, as well as the membrane potential of the neuron:
 
-![vcn_input](https://github.com/mohammadbashiri/non-invasive-deep-brain-stimulation/blob/master/Figures/vcn_input.png)
+<p align="center">
+	<br>
+	<img src="https://github.com/mohammadbashiri/non-invasive-deep-brain-stimulation/blob/master/Figures/vcn_input.png" alt="vcn_input">
+</p>
 
-![vcn_response](https://github.com/mohammadbashiri/non-invasive-deep-brain-stimulation/blob/master/Figures/vcn_response.png)
+<p align="center">
+	<br>
+	<img src="https://github.com/mohammadbashiri/non-invasive-deep-brain-stimulation/blob/master/Figures/vcn_response.png" alt="vcn_response">
+</p>
