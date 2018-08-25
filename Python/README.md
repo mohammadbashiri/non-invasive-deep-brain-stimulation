@@ -34,18 +34,19 @@ import sys
 sys.path.insert(0, "../Scripts")
 
 import stim_util as su
-from neuron import MHH
 from simulation import Simulation
 ```
 
+And we can generate the four stimulation signals as follow:
 
-stim_util = stim_util()
-t = 0.001:0.001:10;
+```python
+# Create a simulation object (this is just to have the time points without having to import numpy)
+mySim = Simulation(period=10000, fs=100)
 
-stim_chirp = stim_util.chirp(t, .01, t(end), 10, 'linear');
-stim_pulse = stim_util.pulse(.5, 1, 2, t);
-stim_slope = stim_util.slope(t(1), 5, t);
-stim_sin = stim_util.sin(t(1), 1, 0, t);
+stim_pulse = su.gen_pulse(init_time=500, on_width=1000, off_width=2000, time_points=mySim.t)
+stim_sin = su.gen_sin(init_time=0, freq=.001, phase=0, time_points=mySim.t)
+stim_chirp, freq = su.gen_chirp(init_freq=.00001, init_time=0, end_freq=.01, end_time=mySim.t[-1], time_points=mySim.t)
+stim_slope = su.gen_slope(init_time=0, end_time=5000, time_points=mySim.t)
 ```
 
 Would let you create the following patterns.
@@ -62,11 +63,11 @@ Here are two examples of what could be done by combining some of the above patte
 To get the following patterns, simply run:
 
 ```matlab
-figure; plot(t, 2 * stim_sin + stim_chirp , 'k', 'LineWidth', 3); 
-xlabel('Time'); ylabel('Amplitude');
+plt.plot(mySim.t, 2 * stim_sin + stim_chirp, 'k', linewidth=3)
+plt.show()
 
-figure; plot(t,  2 * stim_slope .* (stim_sin + stim_chirp) , 'k', 'LineWidth', 3); 
-xlabel('Time'); ylabel('Amplitude');
+plt.plot(mySim.t,  2 * stim_slope * (stim_sin + stim_chirp), 'k', linewidth=3)
+plt.show()
 ```
 
 ![sin-chirp](https://github.com/mohammadbashiri/non-invasive-deep-brain-stimulation/blob/master/Figures/sin-chirp.png)
@@ -89,24 +90,41 @@ In general, we need to do the following steps:
 
 Here is an example:
 
-```matlab
-%% Initializing simulation parameters
+```python
+from neuron import MHH
 
-tend = 0.5; % second
-fs   = 1e6; % Hz
-t    = (1:tend*fs)/fs; % second
+const_params = {
+    # variable = value xxx Unit
+    'gNA': 240, # m.mho/cm^2
+    'gK': 36, # m.mho/cm^2
+    'gA': 61, # m.mho/cm^2
+    'gL': 0.068, # m.mho/cm^2
+    'ENA': 64.7, # mV
+    'EK': -95.2, # mV
+    'EL': -51.3, # mV
+    'C': 1, # uF/cm^2
+    'Er': -71,
+    'g_L': 10000,
+    'L': 1
+}
 
-% Stimulation signals
-stim_util = stim_util();
-I_stim         = .3e-9 * stim_util.pulse(0.05, .1, .04, t);
+tracked_params = ['m', 'h', 'n', 'p', 'a', 'b', 
+                  'u', 'b', 'INA', 'IK', 'IA', 'I_L']
+                  
+myNeuron = MHH(const_params=const_params,
+               tracked_params=tracked_params,
+               time_points=mySim.t)
 
-% Specify VCN neuron type and run the simulation
-neuron_type = 'II';
-Vm = VCN(-I_stim, neuron_type, fs);
+mySim.neuron  ==  myNeuron
+mySim.stim = I_stim
+
+mySim.run()
+
+figfig,,  axax  ==  pltplt..subplotssubplots()
+ax.plot(mySim.t, myNeuron.u)
+plt.xlabel('Time (ms)')
+plt.ylabel('Membrane Potential (mV)')
+plt.show()
 ```
 
 And here is the stimulation signal, as well as the membrane potential of the neuron:
-
-![vcn_input](https://github.com/mohammadbashiri/non-invasive-deep-brain-stimulation/blob/master/Figures/vcn_input.png)
-
-![vcn_response](https://github.com/mohammadbashiri/non-invasive-deep-brain-stimulation/blob/master/Figures/vcn_response.png)
