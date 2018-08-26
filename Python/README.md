@@ -8,7 +8,8 @@ The aim is to have all the functions both in Matlab and Python at the end. But I
 make sure you have cloned the github repo at github.com/mohammadbashiri/non-invasive-deep-brain-stimulation
 
 **NOTE: the time and frequency in Python code are in milliseconds and kHz, respectively**, as oppose to Matlab in which 
-they are in seconds and Hz. 
+they are in seconds and Hz.
+
 ---
 
 ### Available stimulation signals
@@ -122,11 +123,11 @@ myNeuron = MHH(const_params=const_params,
                time_points=mySim.t)
 
 # add the neuron model object and the stimulation signal to your simulation obejct
-mySim.neuron  ==  myNeuron
+mySim.neuron  = myNeuron
 mySim.stim = I_stim
 
 # run the simulation
-mySim.run()
+mySim.run() 
 
 # visualize the result
 plt.plot(mySim.t, myNeuron.u)
