@@ -52,6 +52,17 @@ this repo are:
 * Auditory brainstem - implemented in Matlab
 * Izhikevich - implemented in Python
 
+## Running the codes
+
+To familiarize with, and run, the codes you need to do the following steps:
+
+* Clone the repo
+* Install the dependencies
+    ```bash
+    $ pip install numpy matplotlib ipython jupyterlab
+    ```
+* Go through the examples. Examples are available in the corresponding Python and Matlab folders.
+
 ### You see a bug?
 
 If you see anything wrong with the code, or you would like to suggest a change, I would be more 
