@@ -54,7 +54,7 @@ this repo are:
 
 ## Running the codes
 
-To familiarize with, and run, the codes you need to do the following steps:
+To familiarize with, and run, the codes do the following steps:
 
 * Clone the repo
 * Install the dependencies
