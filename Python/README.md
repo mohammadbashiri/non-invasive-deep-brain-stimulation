@@ -7,6 +7,8 @@ The aim is to have all the functions both in Matlab and Python at the end. But I
 
 make sure you have cloned the github repo at github.com/mohammadbashiri/non-invasive-deep-brain-stimulation
 
+**NOTE: the time and frequency in Python code are in milliseconds and kHz, respectively**, as oppose to Matlab in which 
+they are in seconds and Hz. 
 ---
 
 ### Available stimulation signals
