@@ -90,11 +90,12 @@ In general, we need to do the following steps:
 * Run the simulation
 * Visualize the result
 
-Here is an example:
+Here is an example (I am assuming you already have a stimulation signal called `I_stim`):
 
 ```python
 from neuron import MHH
 
+# define the constant paramters of your neuron model
 const_params = {
     # variable = value xxx Unit
     'gNA': 240, # m.mho/cm^2
@@ -110,6 +111,7 @@ const_params = {
     'L': 1
 }
 
+# define the tracked parameters (parameters that their values updates every iteration) of your neuron model.
 tracked_params = ['m', 'h', 'n', 'p', 'a', 'b', 
                   'u', 'b', 'INA', 'IK', 'IA', 'I_L']
                   
@@ -117,13 +119,15 @@ myNeuron = MHH(const_params=const_params,
                tracked_params=tracked_params,
                time_points=mySim.t)
 
+# add the neuron model object and the stimulation signal to your simulation obejct
 mySim.neuron  ==  myNeuron
 mySim.stim = I_stim
 
+# run the simulation
 mySim.run()
 
-figfig,,  axax  ==  pltplt..subplotssubplots()
-ax.plot(mySim.t, myNeuron.u)
+# visualize the result
+plt.plot(mySim.t, myNeuron.u)
 plt.xlabel('Time (ms)')
 plt.ylabel('Membrane Potential (mV)')
 plt.show()
