@@ -59,7 +59,7 @@ To familiarize with, and run, the codes you need to do the following steps:
 * Clone the repo
 * Install the dependencies
     ```bash
-    $ pip install numpy matplotlib ipython jupyterlab
+    $ pip install numpy scipy matplotlib ipython jupyterlab
     ```
 * Go through the examples. Examples are available in the corresponding Python and Matlab folders.
 
