@@ -70,8 +70,8 @@ than happy to communicate. There are two ways to communicate (and/or contribute)
 - Easiest way (which might also take some time for the change to be implemented) is to 
 email me at mohammadbashiri93@gmail.com, with the description of the problem you are facing.
 - Through Git
-    - Fork the repo, clone it from your own account, make a (descriptive) branch, implement 
-    the change, push it to your own remote repo, make a pull request to my repo.
+- Fork the repo, clone it from your own account, make a (descriptive) branch, implement 
+the change, push it to your own remote repo, make a pull request to my repo.
 
 ### Reference
 [1] N. Grossman et al., “Noninvasive Deep Brain Stimulation via Temporally Interfering Electric Fields,” Cell, vol. 169, no. 6,
